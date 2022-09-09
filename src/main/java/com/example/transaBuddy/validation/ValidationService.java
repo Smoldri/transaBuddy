@@ -1,26 +1,36 @@
-//package validation;
-//
-//
+package com.example.transaBuddy.validation;
+
+
 //import ee.bcs.ourBank.domain.account.Account;
 //import ee.bcs.ourBank.domain.customer.Customer;
 //import ee.bcs.ourBank.infrastructure.exception.BusinessException;
 //import ee.bcs.ourBank.infrastructure.exception.DataNotFoundException;
-//
-//import java.util.Optional;
-//
-//public class ValidationService {
-//
-//    public static final String ACCOUNT_NOT_EXISTS = "Sellist kontot ei eksisteeri";
-//    public static final String CUSTOMER_NOT_EXISTS = "Sellist klienti ei eksisteeri";
-//
-//
-//    public static final String INSUFFICIENT_FUNDS = "Kontol pole piisavalt vahendeid tehingu sooritamiseks";
-//    public static final String MINIMUM_DEPOSIT_REQUIREMENT = "Miinumum deposiidi nõue";
-//    public static final Integer MINIMUM_DEPOSIT_AMOUNT = 5;
-//
-//    public static final String DEPOSIT_OVER_LIMIT = "Deposiidi limiit on ületatud";
-//    public static final String WITHDRAW_OVER_LIMIT = "Raha väljavõtmise limiit on ületatud";
-//
+
+import com.example.transaBuddy.infrastructure.exception.DataNotFoundException;
+import com.example.transaBuddy.temp.UserRole;
+
+import java.util.List;
+import java.util.Optional;
+
+public class ValidationService {
+
+    public static final String ACCOUNT_NOT_EXISTS = "Sellist kontot ei eksisteeri";
+    public static final String CUSTOMER_NOT_EXISTS = "Sellist klienti ei eksisteeri";
+
+
+    public static final String INSUFFICIENT_FUNDS = "Kontol pole piisavalt vahendeid tehingu sooritamiseks";
+    public static final String MINIMUM_DEPOSIT_REQUIREMENT = "Miinumum deposiidi nõue";
+    public static final Integer MINIMUM_DEPOSIT_AMOUNT = 5;
+
+    public static final String DEPOSIT_OVER_LIMIT = "Deposiidi limiit on ületatud";
+    public static final String WITHDRAW_OVER_LIMIT = "Raha väljavõtmise limiit on ületatud";
+
+    public static void validatePasswordUserExists(List<UserRole> userRoles) {
+        if (userRoles.isEmpty()) {
+            throw new DataNotFoundException(ACCOUNT_NOT_EXISTS, "Sellise kasutajanime ja parooliga kontot ei eksisteeri ");
+        }
+    }
+
 //    public static void validateCustomerExists(Optional<Customer> customer, Integer customerId) {
 //        if (customer.isEmpty()) {
 //            throw new DataNotFoundException(CUSTOMER_NOT_EXISTS, "Sellist klienti ID'ga " + customerId + " ei leitud");
@@ -52,5 +62,5 @@
 //        }
 //    }
 //
-//
-//}
+
+}
