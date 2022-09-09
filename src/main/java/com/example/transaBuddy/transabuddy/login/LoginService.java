@@ -1,7 +1,7 @@
-package com.example.transaBuddy.application.login;
+package com.example.transaBuddy.transabuddy.login;
 
-import com.example.transaBuddy.application.user.UserRequest;
-import com.example.transaBuddy.application.user.UserResponse;
+import com.example.transaBuddy.transabuddy.user.UserRequest;
+import com.example.transaBuddy.transabuddy.user.UserResponse;
 import org.springframework.stereotype.Service;
 
 @Service

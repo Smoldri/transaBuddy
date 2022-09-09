@@ -1,3 +1,16 @@
+-- Kustutab public schema (mis põhimõtteliselt kustutab kõik tabelid)
+DROP SCHEMA public CASCADE;
+-- Loob uue public schema vajalikud õigused
+CREATE SCHEMA public
+-- taastab vajalikud andmebaasi õigused
+    GRANT ALL ON SCHEMA public TO postgres;
+GRANT ALL ON SCHEMA public TO PUBLIC;
+
+
+
+
+-- SIIA ALLA TULEB VERTABELO TABELITE LOOMISE OSA
+
 -- Created by Vertabelo (http://vertabelo.com)
 -- Last modification date: 2022-09-08 11:28:06.399
 

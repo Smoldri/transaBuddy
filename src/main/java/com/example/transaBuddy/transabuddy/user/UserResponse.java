@@ -1,4 +1,4 @@
-package com.example.transaBuddy.application.user;
+package com.example.transaBuddy.transabuddy.user;
 
 import lombok.Data;
 
