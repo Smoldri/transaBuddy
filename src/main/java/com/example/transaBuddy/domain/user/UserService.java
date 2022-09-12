@@ -1,5 +1,6 @@
 package com.example.transaBuddy.domain.user;
 
+import com.example.transaBuddy.domain.user.userrole.UserRoleService;
 import com.example.transaBuddy.temp.Contact;
 import com.example.transaBuddy.temp.User;
 import com.example.transaBuddy.transabuddy.contact.ContactInfo;
@@ -21,6 +22,9 @@ public class UserService {
     @Resource
     private UserRepository userRepository;
 
+    @Resource
+    private UserRoleService userRoleService;
+
     public UserResponse mapRequestAndAddUser(UserRequest request, Contact contact) {
         User user = userMapper.userRequestToUser(request);
         user.setContact(contact);
@@ -35,12 +39,18 @@ public class UserService {
         return user.get();
     }
 
+
+
     public void updateContactsInfosWithUserIds(List<ContactInfo> contactInfos) {
-        System.out.println();
         for(ContactInfo contactInfo : contactInfos){
-            System.out.println();
             User user = userRepository.getUserBy(contactInfo.getContactId());
             contactInfo.setUserId(user.getId());
+
         }
+    }
+
+    public void updateContactsInfosWithRoleNames(List<ContactInfo> contactInfos) {
+        for (ContactInfo contactInfo : contactInfos) {
+        contactInfo.setRoleNames(userRoleService.findUserRolesByUserId(contactInfo));        }
     }
 }

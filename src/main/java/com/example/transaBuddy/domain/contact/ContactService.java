@@ -36,8 +36,9 @@ public class ContactService {
     public List<ContactInfo> mapContactsToContactInfosAndUpdateUserIds(List<Contact> contacts) {
         System.out.println();
         List<ContactInfo> contactInfos = contactMapper.contactToContactInfos(contacts);
-
         userService.updateContactsInfosWithUserIds(contactInfos);
+        userService.updateContactsInfosWithRoleNames(contactInfos);
+        //        todo kasutades UserId-sid ContactInfost, leia kõikide kontaktide kõik rollid(Loopception)
         return contactInfos;
     }
 }
