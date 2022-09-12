@@ -31,6 +31,7 @@ public class AdminService {
     }
 
     public List<ContactInfo> getAllContacts() {
+        System.out.println();
         List<Contact> contacts = contactService.getAllContacts();
         return contactService.mapContactsToContactInfosAndUpdateUserIds(contacts);
     }

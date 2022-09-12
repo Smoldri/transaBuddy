@@ -33,6 +33,7 @@ public class ContactService {
     }
 
     public List<ContactInfo> mapContactsToContactInfosAndUpdateUserIds(List<Contact> contacts) {
+        System.out.println();
         List<ContactInfo> contactInfos = contactMapper.contactToContactInfos(contacts);
         userService.updateContactsInfosWithUserIds(contactInfos);
         return contactInfos;

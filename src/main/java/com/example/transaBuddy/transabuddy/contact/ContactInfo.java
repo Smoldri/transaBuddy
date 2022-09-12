@@ -2,10 +2,11 @@ package com.example.transaBuddy.transabuddy.contact;
 
 import lombok.Data;
 
+import java.io.Serializable;
 import java.util.List;
 
 @Data
-public class ContactInfo {
+public class ContactInfo implements Serializable {
     private Integer userId;
     private Integer contactId;
     private String firstName;

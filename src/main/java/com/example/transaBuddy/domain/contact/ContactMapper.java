@@ -12,7 +12,7 @@ import java.util.List;
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = "spring")
 public interface ContactMapper {
     Contact userRequestToContact (UserRequest userRequest);
-    @Mapping(target = "contactId", source = "id" )
+    @Mapping(target = "contactId", source = "id")
     List<ContactInfo> contactToContactInfos(List<Contact> contacts);
 
 }
