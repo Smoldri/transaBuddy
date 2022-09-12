@@ -28,7 +28,6 @@ public class LoginController {
     @PostMapping("register/user")
     @Operation(summary = "Registreeri kasutaja")
     public UserResponse registerNewUser(@RequestBody UserRequest request) {
-
         return loginService.registerNewUser(request);
     }
 

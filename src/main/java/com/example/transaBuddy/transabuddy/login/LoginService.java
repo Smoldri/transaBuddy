@@ -1,7 +1,9 @@
 package com.example.transaBuddy.transabuddy.login;
 
+import com.example.transaBuddy.domain.contact.ContactService;
 import com.example.transaBuddy.domain.user.UserMapper;
 import com.example.transaBuddy.domain.user.userrole.UserRoleService;
+import com.example.transaBuddy.temp.Contact;
 import com.example.transaBuddy.temp.UserRole;
 import com.example.transaBuddy.transabuddy.contact.ContactInfo;
 import com.example.transaBuddy.transabuddy.user.UserRequest;
@@ -18,20 +20,21 @@ public class LoginService {
     private UserRoleService userRoleService;
     @Resource
     private UserMapper userMapper;
+    @Resource
+    private ContactService contactService;
 
     public UserResponse registerNewUser(UserRequest request) {
+        Contact contact = contactService.addNewUser(request);
         return null;
     }
 
     public ContactInfo logIn(LoginRequest request) {
-        System.out.println();
         List<UserRole> userRoles = userRoleService.getValidUserRoles(request);
         ContactInfo contactInfo = userMapper.userToContactInfo(userRoles.get(0).getUser());
         contactInfo.setRoleNames(getRolesNames(userRoles));
         return contactInfo;
 
     }
-
     private List<String> getRolesNames(List<UserRole> userRoles) {
         List<String> roleNames = new ArrayList<>();
         for (UserRole userRole : userRoles){
