@@ -6,7 +6,6 @@ import lombok.Data;
 import java.util.List;
 
 @Data
-
 public class ContactInfo {
     private Integer userId;
     private String firstName;
