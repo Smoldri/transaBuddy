@@ -36,7 +36,9 @@ public class UserService {
     }
 
     public void updateContactsInfosWithUserIds(List<ContactInfo> contactInfos) {
+        System.out.println();
         for(ContactInfo contactInfo : contactInfos){
+            System.out.println();
             User user = userRepository.getUserBy(contactInfo.getContactId());
             contactInfo.setUserId(user.getId());
         }

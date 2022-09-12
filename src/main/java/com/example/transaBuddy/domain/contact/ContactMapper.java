@@ -11,8 +11,14 @@ import java.util.List;
 
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = "spring")
 public interface ContactMapper {
-    Contact userRequestToContact (UserRequest userRequest);
+
     @Mapping(target = "contactId", source = "id")
+    ContactInfo contactToContactInfo(Contact contact);
+
     List<ContactInfo> contactToContactInfos(List<Contact> contacts);
+
+
+    Contact userRequestToContact (UserRequest userRequest);
+
 
 }

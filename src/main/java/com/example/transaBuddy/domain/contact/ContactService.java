@@ -2,6 +2,7 @@ package com.example.transaBuddy.domain.contact;
 
 import com.example.transaBuddy.domain.user.UserService;
 import com.example.transaBuddy.temp.Contact;
+import com.example.transaBuddy.temp.Role;
 import com.example.transaBuddy.transabuddy.contact.ContactInfo;
 import com.example.transaBuddy.transabuddy.user.UserRequest;
 import org.springframework.stereotype.Service;
@@ -35,6 +36,7 @@ public class ContactService {
     public List<ContactInfo> mapContactsToContactInfosAndUpdateUserIds(List<Contact> contacts) {
         System.out.println();
         List<ContactInfo> contactInfos = contactMapper.contactToContactInfos(contacts);
+
         userService.updateContactsInfosWithUserIds(contactInfos);
         return contactInfos;
     }
