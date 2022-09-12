@@ -1,12 +1,11 @@
 package com.example.transaBuddy.temp;
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-
-@Getter
-@Setter
+@Data
 @Entity
 @Table(name = "contact")
 public class Contact {
