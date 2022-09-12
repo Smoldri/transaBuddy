@@ -2,11 +2,11 @@ package com.example.transaBuddy.transabuddy.login;
 
 import com.example.transaBuddy.domain.contact.ContactService;
 import com.example.transaBuddy.domain.user.UserMapper;
-import com.example.transaBuddy.domain.user.UserResponse;
+import com.example.transaBuddy.transabuddy.user.UserResponse;
 import com.example.transaBuddy.domain.user.UserService;
 import com.example.transaBuddy.domain.user.userrole.UserRoleService;
 import com.example.transaBuddy.temp.Contact;
-import com.example.transaBuddy.temp.UserRole;
+import com.example.transaBuddy.domain.user.userrole.UserRole;
 import com.example.transaBuddy.transabuddy.contact.ContactInfo;
 import com.example.transaBuddy.transabuddy.user.UserRequest;
 import org.springframework.stereotype.Service;

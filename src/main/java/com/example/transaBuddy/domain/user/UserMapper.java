@@ -3,6 +3,7 @@ package com.example.transaBuddy.domain.user;
 import com.example.transaBuddy.temp.User;
 import com.example.transaBuddy.transabuddy.contact.ContactInfo;
 import com.example.transaBuddy.transabuddy.user.UserRequest;
+import com.example.transaBuddy.transabuddy.user.UserResponse;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.ReportingPolicy;

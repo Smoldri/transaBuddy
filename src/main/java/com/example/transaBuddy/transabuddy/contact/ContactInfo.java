@@ -1,6 +1,5 @@
 package com.example.transaBuddy.transabuddy.contact;
 
-import com.example.transaBuddy.temp.UserRole;
 import lombok.Data;
 
 import java.util.List;

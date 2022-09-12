@@ -1,6 +1,5 @@
 package com.example.transaBuddy.domain.user.userrole;
 
-import com.example.transaBuddy.temp.UserRole;
 import com.example.transaBuddy.transabuddy.login.LoginRequest;
 import com.example.transaBuddy.validation.ValidationService;
 import org.springframework.stereotype.Service;

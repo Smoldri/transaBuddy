@@ -1,6 +1,6 @@
 package com.example.transaBuddy.transabuddy.login;
 
-import com.example.transaBuddy.domain.user.UserResponse;
+import com.example.transaBuddy.transabuddy.user.UserResponse;
 import com.example.transaBuddy.transabuddy.contact.ContactInfo;
 import com.example.transaBuddy.transabuddy.user.UserRequest;
 import io.swagger.v3.oas.annotations.Operation;

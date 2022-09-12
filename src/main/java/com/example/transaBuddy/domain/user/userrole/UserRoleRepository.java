@@ -1,6 +1,5 @@
 package com.example.transaBuddy.domain.user.userrole;
 
-import com.example.transaBuddy.temp.UserRole;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
