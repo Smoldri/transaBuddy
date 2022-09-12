@@ -18,6 +18,7 @@ INSERT INTO public.location (id, address, latitude, longitude, district_id) VALU
 
 INSERT INTO public.role (id, name) VALUES (DEFAULT, 'sender');
 INSERT INTO public.role (id, name) VALUES (DEFAULT, 'courier');
+INSERT INTO public.role (id, name) VALUES (DEFAULT, 'admin');
 
 INSERT INTO public."user" (id, user_name, password, contact_id, is_active) VALUES (DEFAULT, 'mailegaalne', '1234', 1, DEFAULT);
 INSERT INTO public."user" (id, user_name, password, contact_id, is_active) VALUES (DEFAULT, 'siimmassiiv', '1234', 2, DEFAULT);

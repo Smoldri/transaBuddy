@@ -1,12 +1,9 @@
 package com.example.transaBuddy.admin;
 
-import com.example.transaBuddy.temp.User;
+import com.example.transaBuddy.transabuddy.contact.ContactInfo;
 import com.example.transaBuddy.transabuddy.user.UserResponse;
 import io.swagger.v3.oas.annotations.Operation;
-import org.springframework.web.bind.annotation.PatchMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -23,10 +20,11 @@ public class AdminController {
         adminService.updateUserIsActiveStatus(userResponse);
     }
 
-    @PatchMapping("/users")
+    @GetMapping("/users")
     @Operation (summary = "Kõikide kontode leidmine")
-    public List<User> findUserByUserName (String userName){
-        return null;
+    public List<ContactInfo> getAllContacts (){
+        return adminService.getAllContacts();
+
     }
 
 }

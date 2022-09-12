@@ -7,6 +7,7 @@ import java.util.List;
 @Data
 public class ContactInfo {
     private Integer userId;
+    private Integer contactId;
     private String firstName;
     private String lastName;
     private String personalCode;
