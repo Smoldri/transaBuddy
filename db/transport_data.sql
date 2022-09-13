@@ -30,6 +30,8 @@ INSERT INTO public.user_role (id, user_id, role_id) VALUES (DEFAULT, 3, 1);
 INSERT INTO public.user_role (id, user_id, role_id) VALUES (DEFAULT, 4, 2);
 INSERT INTO public.user_role (id, user_id, role_id) VALUES (DEFAULT, 4, 2);
 INSERT INTO public.user_role (id, user_id, role_id) VALUES (DEFAULT, 1, 3);
+INSERT INTO public.user_role (id, user_id, role_id) VALUES (DEFAULT, 1, 2);
+INSERT INTO public.user_role (id, user_id, role_id) VALUES (DEFAULT, 1, 1);
 
 INSERT INTO public.shipment_price (id, dimensions, weight, price, type) VALUES (DEFAULT, '5x35x45cm', 5, 5, 'XS');
 INSERT INTO public.shipment_price (id, dimensions, weight, price, type) VALUES (DEFAULT, '12x35x45cm', 35, 7, 'S');
