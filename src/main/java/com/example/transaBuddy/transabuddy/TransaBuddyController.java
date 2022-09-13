@@ -14,12 +14,4 @@ public class TransaBuddyController {
     @Resource
     private TransaBuddyService transaBuddyService;
 
-
-    @GetMapping("/order")
-    @Operation(summary = "Leiab kõik tellimused")
-    public List<OrderInfo> findOrders(Integer customerId) {
-        return null;
-    }
-
-
 }
