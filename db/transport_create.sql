@@ -56,6 +56,7 @@ CREATE TABLE location (
 CREATE TABLE "order" (
     id serial  NOT NULL,
     sender_user_id int  NOT NULL,
+    receiver_name varchar(255) NOT NULL,
     receiver_phone_number varchar(255)  NOT NULL,
     courier_user_id int  NULL,
     delivery_date date  NOT NULL,

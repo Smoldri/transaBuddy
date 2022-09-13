@@ -40,10 +40,10 @@ INSERT INTO public.shipment (id, amount, description, shipment_price_id) VALUES 
 INSERT INTO public.shipment (id, amount, description, shipment_price_id) VALUES (DEFAULT, 6, null, 2);
 INSERT INTO public.shipment (id, amount, description, shipment_price_id) VALUES (DEFAULT, 2, 'toolid', 5);
 
-INSERT INTO public."order" (id, sender_user_id, receiver_phone_number, courier_user_id, delivery_date, from_hour, to_hour, comment, status, shipment_id) VALUES (DEFAULT, 2, '1111', 3, '2022-09-26', 12, 13, 'kiire', 'A', 1);
-INSERT INTO public."order" (id, sender_user_id, receiver_phone_number, courier_user_id, delivery_date, from_hour, to_hour, comment, status, shipment_id) VALUES (DEFAULT, 3, '2222', 4, '2022-09-28', 14, 16, null, 'P', 2);
-INSERT INTO public."order" (id, sender_user_id, receiver_phone_number, courier_user_id, delivery_date, from_hour, to_hour, comment, status, shipment_id) VALUES (DEFAULT, 4, '3333', 3, '2022-09-27', 13, 17, 'ei ole kiire', 'D', 3);
-INSERT INTO public."order" (id, sender_user_id, receiver_phone_number, courier_user_id, delivery_date, from_hour, to_hour, comment, status, shipment_id) VALUES (DEFAULT, 4, '4444', 4, '2022-09-27', 15, 16, 'õrn kaup', 'C', 4);
+INSERT INTO public."order" (id, sender_user_id, receiver_name, receiver_phone_number, courier_user_id, delivery_date, from_hour, to_hour, comment, status, shipment_id) VALUES (DEFAULT, 2, 'Ants',  '1111', 3, '2022-09-26', 12, 13, 'kiire', 'A', 1);
+INSERT INTO public."order" (id, sender_user_id, receiver_name, receiver_phone_number, courier_user_id, delivery_date, from_hour, to_hour, comment, status, shipment_id) VALUES (DEFAULT, 3, 'Mihkel', '2222', 4, '2022-09-28', 14, 16, null, 'P', 2);
+INSERT INTO public."order" (id, sender_user_id, receiver_name, receiver_phone_number, courier_user_id, delivery_date, from_hour, to_hour, comment, status, shipment_id) VALUES (DEFAULT, 4, 'Kristi', '3333', 3, '2022-09-27', 13, 17, 'ei ole kiire', 'D', 3);
+INSERT INTO public."order" (id, sender_user_id, receiver_name, receiver_phone_number, courier_user_id, delivery_date, from_hour, to_hour, comment, status, shipment_id) VALUES (DEFAULT, 4, 'Siim', '4444', 4, '2022-09-27', 15, 16, 'õrn kaup', 'C', 4);
 
 INSERT INTO public.pickup_dropoff (id, order_id, location_id, type) VALUES (DEFAULT, 2, 1, 'P');
 INSERT INTO public.pickup_dropoff (id, order_id, location_id, type) VALUES (DEFAULT, 2, 2, 'D');

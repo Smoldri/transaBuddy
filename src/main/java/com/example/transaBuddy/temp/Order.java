@@ -20,6 +20,9 @@ public class Order {
     @JoinColumn(name = "sender_user_id", nullable = false)
     private User senderUser;
 
+    @Column(name = "receiver_name", nullable = false)
+    private String receiverName;
+
     @Column(name = "receiver_phone_number", nullable = false)
     private String receiverPhoneNumber;
 

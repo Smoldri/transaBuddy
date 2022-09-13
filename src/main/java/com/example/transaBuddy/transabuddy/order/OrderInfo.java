@@ -16,5 +16,4 @@ public class OrderInfo implements Serializable {
     private Integer comment;
     private Integer status;
     private Integer shipmentId;
-
 }
