@@ -32,10 +32,13 @@ public class LoginService {
     @Transactional
     public UserResponse registerNewUser(UserRequest request) {
         Contact contact = contactService.addContact (request);
-        return userService.mapRequestAndAddUser(request, contact);
+        UserResponse response = userService.mapRequestAndAddUser(request, contact);
+        userRoleService.addRoleToUser(response, request);
+        return response;
     }
 
     public ContactInfo logIn(LoginRequest request) {
+        System.out.println();
         List<UserRole> userRoles = userRoleService.getValidUserRoles(request);
         ContactInfo contactInfo = userMapper.userToContactInfo(userRoles.get(0).getUser());
         contactInfo.setRoleNames(getRolesNames(userRoles));
