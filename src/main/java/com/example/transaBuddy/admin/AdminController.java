@@ -15,7 +15,7 @@ public class AdminController {
     @Resource
     private AdminService adminService;
     @PatchMapping("/user/status")
-    @Operation (summary = "Kliendi või kulleri konto  isActive staatuse muutmine")
+    @Operation(summary = "Kliendi või kulleri konto  isActive staatuse muutmine")
     public void updateUserIsActiveStatus (@RequestBody UserResponse userResponse){
         adminService.updateUserIsActiveStatus(userResponse);
     }
