@@ -52,4 +52,8 @@ public class UserService {
         for (ContactInfo contactInfo : contactInfos) {
         contactInfo.setRoleNames(userRoleService.findUserRolesByUserId(contactInfo));        }
     }
+
+    public User getUserByUserId(Integer senderUsedId) {
+        return userRepository.getUserByUserId(senderUsedId);
+    }
 }
