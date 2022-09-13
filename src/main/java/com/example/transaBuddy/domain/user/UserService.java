@@ -5,7 +5,6 @@ import com.example.transaBuddy.temp.Contact;
 import com.example.transaBuddy.temp.User;
 import com.example.transaBuddy.transabuddy.contact.ContactInfo;
 import com.example.transaBuddy.transabuddy.user.UserRequest;
-import com.example.transaBuddy.transabuddy.user.UserResponse;
 import com.example.transaBuddy.validation.ValidationService;
 import org.springframework.stereotype.Service;
 
@@ -25,11 +24,11 @@ public class UserService {
     @Resource
     private UserRoleService userRoleService;
 
-    public UserResponse mapRequestAndAddUser(UserRequest request, Contact contact) {
+    public User createAndAddUser(UserRequest request, Contact contact) {
         User user = userMapper.userRequestToUser(request);
         user.setContact(contact);
         userRepository.save(user);
-        return userMapper.userToUserResponse(user);
+        return user;
     }
 
 

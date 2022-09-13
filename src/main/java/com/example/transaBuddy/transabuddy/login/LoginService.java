@@ -1,7 +1,12 @@
 package com.example.transaBuddy.transabuddy.login;
 
 import com.example.transaBuddy.domain.contact.ContactService;
+import com.example.transaBuddy.domain.user.role.RoleService;
 import com.example.transaBuddy.domain.user.UserMapper;
+import com.example.transaBuddy.domain.user.userrole.UserRoleMapper;
+import com.example.transaBuddy.domain.user.userrole.UserRoleRepository;
+import com.example.transaBuddy.temp.Role;
+import com.example.transaBuddy.temp.User;
 import com.example.transaBuddy.transabuddy.user.UserResponse;
 import com.example.transaBuddy.domain.user.UserService;
 import com.example.transaBuddy.domain.user.userrole.UserRoleService;
@@ -27,18 +32,26 @@ public class LoginService {
     private UserMapper userMapper;
     @Resource
     private UserService userService;
+    @Resource
+    private RoleService roleService;
+    @Resource
+    private UserRoleMapper userRoleMapper;
 
+    @Resource
+    private UserRoleRepository userRoleRepository;
 
     @Transactional
     public UserResponse registerNewUser(UserRequest request) {
-        Contact contact = contactService.addContact (request);
-        UserResponse response = userService.mapRequestAndAddUser(request, contact);
-        userRoleService.addRoleToUser(response, request);
-        return response;
+        Contact contact = contactService.createAndAddContact(request);
+        User user = userService.createAndAddUser(request, contact);
+        Role role = roleService.getRoleByRoleId(request.getRoleId());
+        userRoleService.addRoleToUser(user, role);
+//        todo Lisa userResponsele juurde roleId requestist
+
+        return userMapper.userToUserResponse(user);
     }
 
     public ContactInfo logIn(LoginRequest request) {
-        System.out.println();
         List<UserRole> userRoles = userRoleService.getValidUserRoles(request);
         ContactInfo contactInfo = userMapper.userToContactInfo(userRoles.get(0).getUser());
         contactInfo.setRoleNames(getRolesNames(userRoles));
@@ -48,7 +61,7 @@ public class LoginService {
 
     private List<String> getRolesNames(List<UserRole> userRoles) {
         List<String> roleNames = new ArrayList<>();
-        for (UserRole userRole : userRoles){
+        for (UserRole userRole : userRoles) {
             roleNames.add(userRole.getRole().getName());
         }
         return roleNames;

@@ -11,5 +11,5 @@ public class UserRequest {
     private String personalCode;
     private String phoneNumber;
     private String email;
-    private int roleId;
+    private Integer roleId;
 }
