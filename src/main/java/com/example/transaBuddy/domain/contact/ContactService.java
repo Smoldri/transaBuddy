@@ -29,17 +29,25 @@ public class ContactService {
         return contact;
     }
 
+
     public List<Contact> getAllContacts() {
         return contactRepository.findAll();
     }
 
     public List<ContactInfo> mapContactsToContactInfosAndUpdateUserIds(List<Contact> contacts) {
-        System.out.println();
         List<ContactInfo> contactInfos = contactMapper.contactToContactInfos(contacts);
         userService.updateContactsInfosWithUserIds(contactInfos);
         userService.updateContactsInfosWithRoleNames(contactInfos);
-        //        todo kasutades UserId-sid ContactInfost, leia kõikide kontaktide kõik rollid(Loopception)
         return contactInfos;
+    }
+
+    public List<Contact> findContacts(String firstName, String lastName, String personalCode) {
+        boolean contactExists = contactRepository.existsBy(firstName, lastName, personalCode);
+        if (contactExists){
+            return contactRepository.findByFirstNameAndLastNameAndPersonalCode(firstName, lastName, personalCode);
+        } else {
+            return contactRepository.findByFirstNameOrLastNameOrPersonalCode(firstName, lastName, personalCode);
+        }
     }
 }
 

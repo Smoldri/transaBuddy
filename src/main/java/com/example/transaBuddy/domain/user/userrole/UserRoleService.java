@@ -30,8 +30,7 @@ public class UserRoleService {
         for (UserRole userRole : userRoles) {
             roleNames.add(userRole.getRole().getName());
         }
-
         return roleNames;
-
     }
+
 }

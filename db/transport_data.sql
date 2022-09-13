@@ -18,7 +18,6 @@ INSERT INTO public.location (id, address, latitude, longitude, district_id) VALU
 
 INSERT INTO public.role (id, name) VALUES (DEFAULT, 'sender');
 INSERT INTO public.role (id, name) VALUES (DEFAULT, 'courier');
-INSERT INTO public.role (id, name) VALUES (DEFAULT, 'admin');
 
 INSERT INTO public."user" (id, user_name, password, contact_id, is_active) VALUES (DEFAULT, 'mailegaalne', '1234', 1, DEFAULT);
 INSERT INTO public."user" (id, user_name, password, contact_id, is_active) VALUES (DEFAULT, 'siimmassiiv', '1234', 2, DEFAULT);
@@ -28,7 +27,7 @@ INSERT INTO public."user" (id, user_name, password, contact_id, is_active) VALUE
 INSERT INTO public.user_role (id, user_id, role_id) VALUES (DEFAULT, 2, 1);
 INSERT INTO public.user_role (id, user_id, role_id) VALUES (DEFAULT, 3, 1);
 INSERT INTO public.user_role (id, user_id, role_id) VALUES (DEFAULT, 4, 2);
-INSERT INTO public.user_role (id, user_id, role_id) VALUES (DEFAULT, 5, 2);
+INSERT INTO public.user_role (id, user_id, role_id) VALUES (DEFAULT, 4, 2);
 
 INSERT INTO public.shipment_price (id, dimensions, weight, price, type) VALUES (DEFAULT, '5x35x45cm', 5, 5, 'XS');
 INSERT INTO public.shipment_price (id, dimensions, weight, price, type) VALUES (DEFAULT, '12x35x45cm', 35, 7, 'S');
@@ -52,8 +51,7 @@ INSERT INTO public.pickup_dropoff (id, order_id, location_id, type) VALUES (DEFA
 INSERT INTO public.pickup_dropoff (id, order_id, location_id, type) VALUES (DEFAULT, 4, 1, 'D');
 INSERT INTO public.pickup_dropoff (id, order_id, location_id, type) VALUES (DEFAULT, 3, 3, 'P');
 INSERT INTO public.pickup_dropoff (id, order_id, location_id, type) VALUES (DEFAULT, 3, 1, 'D');
-INSERT INTO public.pickup_dropoff (id, order_id, location_id, type) VALUES (DEFAULT, 5, 2, 'P');
-INSERT INTO public.pickup_dropoff (id, order_id, location_id, type) VALUES (DEFAULT, 5, 3, 'D');
+
 
 INSERT INTO public.image (id, base64)
 VALUES (DEFAULT,
