@@ -18,7 +18,6 @@ INSERT INTO public.location (id, address, latitude, longitude, district_id) VALU
 
 INSERT INTO public.role (id, name) VALUES (DEFAULT, 'sender');
 INSERT INTO public.role (id, name) VALUES (DEFAULT, 'courier');
-INSERT INTO public.role (id, name) VALUES (DEFAULT, 'admin');
 
 INSERT INTO public."user" (id, user_name, password, contact_id, is_active) VALUES (DEFAULT, 'mailegaalne', '1234', 1, DEFAULT);
 INSERT INTO public."user" (id, user_name, password, contact_id, is_active) VALUES (DEFAULT, 'siimmassiiv', '1234', 2, DEFAULT);
@@ -29,9 +28,6 @@ INSERT INTO public.user_role (id, user_id, role_id) VALUES (DEFAULT, 2, 1);
 INSERT INTO public.user_role (id, user_id, role_id) VALUES (DEFAULT, 3, 1);
 INSERT INTO public.user_role (id, user_id, role_id) VALUES (DEFAULT, 4, 2);
 INSERT INTO public.user_role (id, user_id, role_id) VALUES (DEFAULT, 4, 2);
-INSERT INTO public.user_role (id, user_id, role_id) VALUES (DEFAULT, 1, 3);
-INSERT INTO public.user_role (id, user_id, role_id) VALUES (DEFAULT, 1, 2);
-INSERT INTO public.user_role (id, user_id, role_id) VALUES (DEFAULT, 1, 1);
 
 INSERT INTO public.shipment_price (id, dimensions, weight, price, type) VALUES (DEFAULT, '5x35x45cm', 5, 5, 'XS');
 INSERT INTO public.shipment_price (id, dimensions, weight, price, type) VALUES (DEFAULT, '12x35x45cm', 35, 7, 'S');
@@ -44,10 +40,10 @@ INSERT INTO public.shipment (id, amount, description, shipment_price_id) VALUES 
 INSERT INTO public.shipment (id, amount, description, shipment_price_id) VALUES (DEFAULT, 6, null, 2);
 INSERT INTO public.shipment (id, amount, description, shipment_price_id) VALUES (DEFAULT, 2, 'toolid', 5);
 
-INSERT INTO public."order" (id, sender_user_id, receiver_phone_number, courier_user_id, delivery_date, from_hour, to_hour, comment, status, shipment_id) VALUES (DEFAULT, 2, '1111', 3, '2022-09-26', 12, 13, 'kiire', 'A', 1);
-INSERT INTO public."order" (id, sender_user_id, receiver_phone_number, courier_user_id, delivery_date, from_hour, to_hour, comment, status, shipment_id) VALUES (DEFAULT, 3, '2222', 4, '2022-09-28', 14, 16, null, 'P', 2);
-INSERT INTO public."order" (id, sender_user_id, receiver_phone_number, courier_user_id, delivery_date, from_hour, to_hour, comment, status, shipment_id) VALUES (DEFAULT, 4, '3333', 3, '2022-09-27', 13, 17, 'ei ole kiire', 'D', 3);
-INSERT INTO public."order" (id, sender_user_id, receiver_phone_number, courier_user_id, delivery_date, from_hour, to_hour, comment, status, shipment_id) VALUES (DEFAULT, 4, '4444', 4, '2022-09-27', 15, 16, 'õrn kaup', 'C', 4);
+INSERT INTO public."order" (id, sender_user_id, receiver_name, receiver_phone_number, courier_user_id, delivery_date, from_hour, to_hour, comment, status, shipment_id) VALUES (DEFAULT, 2, 'Ants',  '1111', 3, '2022-09-26', 12, 13, 'kiire', 'A', 1);
+INSERT INTO public."order" (id, sender_user_id, receiver_name, receiver_phone_number, courier_user_id, delivery_date, from_hour, to_hour, comment, status, shipment_id) VALUES (DEFAULT, 3, 'Mihkel', '2222', 4, '2022-09-28', 14, 16, null, 'P', 2);
+INSERT INTO public."order" (id, sender_user_id, receiver_name, receiver_phone_number, courier_user_id, delivery_date, from_hour, to_hour, comment, status, shipment_id) VALUES (DEFAULT, 4, 'Kristi', '3333', 3, '2022-09-27', 13, 17, 'ei ole kiire', 'D', 3);
+INSERT INTO public."order" (id, sender_user_id, receiver_name, receiver_phone_number, courier_user_id, delivery_date, from_hour, to_hour, comment, status, shipment_id) VALUES (DEFAULT, 4, 'Siim', '4444', 4, '2022-09-27', 15, 16, 'õrn kaup', 'C', 4);
 
 INSERT INTO public.pickup_dropoff (id, order_id, location_id, type) VALUES (DEFAULT, 2, 1, 'P');
 INSERT INTO public.pickup_dropoff (id, order_id, location_id, type) VALUES (DEFAULT, 2, 2, 'D');

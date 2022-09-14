@@ -21,10 +21,15 @@ public class AdminController {
     }
 
     @GetMapping("/users")
-    @Operation (summary = "Kõikide kontode leidmine")
+    @Operation (summary = "Kõikide kasutajate leidmine")
     public List<ContactInfo> getAllContacts (){
         return adminService.getAllContacts();
 
+    }
+    @GetMapping("/find")
+    @Operation (summary = "Kasutajate leidmine erinevate parameetrite alusel")
+    public List<ContactInfo> findContacts(String firstName, String lastName, String personalCode){
+        return adminService.findContacts(firstName, lastName, personalCode);
     }
 
 }
