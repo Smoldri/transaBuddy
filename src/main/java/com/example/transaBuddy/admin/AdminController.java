@@ -1,6 +1,7 @@
 package com.example.transaBuddy.admin;
 
 import com.example.transaBuddy.transabuddy.contact.ContactInfo;
+import com.example.transaBuddy.transabuddy.shipment.shipmentprice.ShipmentPriceInfo;
 import com.example.transaBuddy.transabuddy.user.UserResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.web.bind.annotation.*;
@@ -31,5 +32,12 @@ public class AdminController {
     public List<ContactInfo> findContacts(String firstName, String lastName, String personalCode){
         return adminService.findContacts(firstName, lastName, personalCode);
     }
+
+    @GetMapping ("/prices")
+    @Operation(summary = "Get all shipment prices")
+    public List<ShipmentPriceInfo> getAllPrices() {
+        return adminService.getAllPrices();
+    }
+
 
 }

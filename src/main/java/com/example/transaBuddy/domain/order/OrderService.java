@@ -2,7 +2,7 @@ package com.example.transaBuddy.domain.order;
 
 import com.example.transaBuddy.domain.user.UserService;
 import com.example.transaBuddy.temp.Order;
-import com.example.transaBuddy.temp.Shipment;
+import com.example.transaBuddy.domain.shipment.Shipment;
 import com.example.transaBuddy.temp.User;
 import com.example.transaBuddy.transabuddy.order.OrderInfo;
 import com.example.transaBuddy.transabuddy.order.OrderRequest;
@@ -41,13 +41,13 @@ public class OrderService {
 
         return orderMapper.orderToOrderResponse(order);
     }
-    public List<OrderInfo> findOrdersBySenderId(Integer senderId) {
-        List<Order> orders = orderRepository.findOrdersBySenderId(senderId);
-        return orderMapper.ordersToOrderInfos(orders);
-    }
-
-    public List<OrderInfo> findOrdersByCourierId(Integer courierId) {
-        List<Order> orders = orderRepository.findOrdersByCourierId(courierId);
-        return orderMapper.ordersToOrderInfos(orders);
-    }
+//    public List<OrderInfo> findOrdersBySenderId(Integer senderId) {
+//        List<Order> orders = orderRepository.findOrdersBySenderId(senderId);
+//        return orderMapper.ordersToOrderInfos(orders);
+//    }
+//
+//    public List<OrderInfo> findOrdersByCourierId(Integer courierId) {
+//        List<Order> orders = orderRepository.findOrdersByCourierId(courierId);
+//        return orderMapper.ordersToOrderInfos(orders);
+//    }
 }

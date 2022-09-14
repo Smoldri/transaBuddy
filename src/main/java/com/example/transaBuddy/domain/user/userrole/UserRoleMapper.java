@@ -1,6 +1,5 @@
 package com.example.transaBuddy.domain.user.userrole;
 
-import com.example.transaBuddy.transabuddy.user.UserRequest;
 import com.example.transaBuddy.transabuddy.user.UserResponse;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

@@ -1,5 +1,6 @@
-package com.example.transaBuddy.temp;
+package com.example.transaBuddy.domain.shipment;
 
+import com.example.transaBuddy.domain.shipment.shipmentPrice.ShipmentPrice;
 import lombok.Getter;
 import lombok.Setter;
 

@@ -1,12 +1,13 @@
-package com.example.transaBuddy.temp;
+package com.example.transaBuddy.domain.shipment.shipmentPrice;
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
-@Getter
-@Setter
+@Data
 @Entity
 @Table(name = "shipment_price")
 public class ShipmentPrice {
@@ -26,5 +27,7 @@ public class ShipmentPrice {
 
     @Column(name = "type", nullable = false, length = 2)
     private String type;
+
+
 
 }

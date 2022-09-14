@@ -1,12 +1,13 @@
 package com.example.transaBuddy.transabuddy.shipment;
 
-import com.example.transaBuddy.temp.Shipment;
-import com.example.transaBuddy.temp.ShipmentPrice;
+import com.example.transaBuddy.domain.shipment.Shipment;
+import com.example.transaBuddy.domain.shipment.shipmentPrice.ShipmentPrice;
 import com.example.transaBuddy.transabuddy.order.OrderRequest;
 import com.example.transaBuddy.transabuddy.shipment.shipmentprice.ShipmentPriceService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @Service
 public class ShipmentService {
@@ -25,4 +26,5 @@ public class ShipmentService {
         return shipmentRepository.save(shipment);
 
     }
+
 }
