@@ -1,14 +1,12 @@
 package com.example.transaBuddy.domain.user.userrole;
 
-import com.example.transaBuddy.temp.Role;
-import com.example.transaBuddy.temp.User;
-import lombok.Getter;
-import lombok.Setter;
+import com.example.transaBuddy.domain.user.User;
+import com.example.transaBuddy.domain.user.role.Role;
+import lombok.Data;
 
 import javax.persistence.*;
 
-@Getter
-@Setter
+@Data
 @Entity
 @Table(name = "user_role")
 public class UserRole {

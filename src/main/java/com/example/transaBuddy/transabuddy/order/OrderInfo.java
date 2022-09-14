@@ -3,7 +3,7 @@ package com.example.transaBuddy.transabuddy.order;
 import lombok.Data;
 
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.util.Date;
 
 @Data
 public class OrderInfo implements Serializable {
@@ -12,10 +12,11 @@ public class OrderInfo implements Serializable {
     private String receiverName;
     private String receiverPhoneNumber;
     private Integer courierUserId;
-    private LocalDate deliveryDate;
+    private Date deliveryDate;
     private Integer fromHour;
     private Integer toHour;
     private String comment;
     private String status;
     private Integer shipmentId;
+
 }

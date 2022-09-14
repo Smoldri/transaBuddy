@@ -1,8 +1,6 @@
-package com.example.transaBuddy.temp;
+package com.example.transaBuddy.domain.contact;
 
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 
 import javax.persistence.*;
 @Data

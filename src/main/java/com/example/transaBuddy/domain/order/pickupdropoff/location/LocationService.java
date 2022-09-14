@@ -1,9 +1,8 @@
-package com.example.transaBuddy.transabuddy.order.pickup_dropoff.location;
+package com.example.transaBuddy.domain.order.pickupdropoff.location;
 
-import com.example.transaBuddy.temp.District;
-import com.example.transaBuddy.temp.Location;
+import com.example.transaBuddy.domain.order.pickupdropoff.location.district.District;
 import com.example.transaBuddy.transabuddy.order.OrderRequest;
-import com.example.transaBuddy.transabuddy.order.pickup_dropoff.location.district.DistrictRepository;
+import com.example.transaBuddy.domain.order.pickupdropoff.location.district.DistrictRepository;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;

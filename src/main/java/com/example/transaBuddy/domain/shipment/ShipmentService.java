@@ -1,10 +1,9 @@
-package com.example.transaBuddy.transabuddy.shipment;
+package com.example.transaBuddy.domain.shipment;
 
-import com.example.transaBuddy.temp.Shipment;
-import com.example.transaBuddy.temp.ShipmentPrice;
+import com.example.transaBuddy.domain.shipment.shipmentPrice.ShipmentPrice;
+import com.example.transaBuddy.domain.shipment.shipmentPrice.ShipmentPriceService;
 import com.example.transaBuddy.transabuddy.order.OrderInfo;
 import com.example.transaBuddy.transabuddy.order.OrderRequest;
-import com.example.transaBuddy.transabuddy.shipment.shipmentprice.ShipmentPriceService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -25,7 +24,6 @@ public class ShipmentService {
         ShipmentPrice shipmentPrice = shipmentPriceService.getShipmentPriceCategoryById(request.getShipmentPriceId());
         shipment.setShipmentPrice(shipmentPrice);
         return shipmentRepository.save(shipment);
-
     }
 
     public void updateOrderInfosWithShipmentIds(List<OrderInfo> orderInfos) {
@@ -34,4 +32,5 @@ public class ShipmentService {
             orderInfo.setShipmentId((shipment.getId()));
         }
     }
+
 }

@@ -1,5 +1,6 @@
-package com.example.transaBuddy.temp;
+package com.example.transaBuddy.domain.user;
 
+import com.example.transaBuddy.domain.contact.Contact;
 import lombok.Getter;
 import lombok.Setter;
 

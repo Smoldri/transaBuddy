@@ -1,6 +1,7 @@
 package com.example.transaBuddy.admin;
 
 import com.example.transaBuddy.transabuddy.contact.ContactInfo;
+import com.example.transaBuddy.transabuddy.shipment.ShipmentPriceInfo;
 import com.example.transaBuddy.transabuddy.order.OrderInfo;
 import com.example.transaBuddy.transabuddy.user.UserResponse;
 import io.swagger.v3.oas.annotations.Operation;
@@ -31,6 +32,12 @@ public class AdminController {
     @Operation (summary = "Kasutajate leidmine erinevate parameetrite alusel")
     public List<ContactInfo> findContacts(String firstName, String lastName, String personalCode){
         return adminService.findContacts(firstName, lastName, personalCode);
+    }
+
+    @GetMapping ("/prices")
+    @Operation(summary = "Get all shipment prices")
+    public List<ShipmentPriceInfo> getAllPrices() {
+        return adminService.getAllPrices();
     }
 
     @GetMapping("/orders")

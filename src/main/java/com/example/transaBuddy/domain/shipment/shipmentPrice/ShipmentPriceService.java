@@ -1,9 +1,9 @@
-package com.example.transaBuddy.transabuddy.shipment.shipmentprice;
+package com.example.transaBuddy.domain.shipment.shipmentPrice;
 
-import com.example.transaBuddy.temp.ShipmentPrice;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @Service
 public class ShipmentPriceService {
@@ -12,5 +12,9 @@ public class ShipmentPriceService {
     private ShipmentPriceRepository shipmentPriceRepository;
     public ShipmentPrice getShipmentPriceCategoryById(Integer shipmentPriceId) {
        return shipmentPriceRepository.getShipmentPriceById(shipmentPriceId);
+    }
+
+    public List<ShipmentPrice> getAllPrices() {
+        return shipmentPriceRepository.findAll();
     }
 }

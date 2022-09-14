@@ -1,6 +1,5 @@
-package com.example.transaBuddy.transabuddy.order.pickup_dropoff.location;
+package com.example.transaBuddy.domain.order.pickupdropoff.location;
 
-import com.example.transaBuddy.temp.Location;
 import com.example.transaBuddy.transabuddy.order.OrderRequest;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

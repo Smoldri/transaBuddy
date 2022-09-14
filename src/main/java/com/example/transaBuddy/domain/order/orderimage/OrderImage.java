@@ -1,12 +1,12 @@
-package com.example.transaBuddy.temp;
+package com.example.transaBuddy.domain.order.orderimage;
 
-import lombok.Getter;
-import lombok.Setter;
+import com.example.transaBuddy.domain.order.Order;
+import com.example.transaBuddy.domain.order.orderimage.image.Image;
+import lombok.Data;
 
 import javax.persistence.*;
 
-@Getter
-@Setter
+@Data
 @Entity
 @Table(name = "order_image")
 public class OrderImage {

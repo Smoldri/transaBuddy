@@ -1,13 +1,13 @@
-package com.example.transaBuddy.temp;
+package com.example.transaBuddy.domain.order;
 
-import lombok.Getter;
-import lombok.Setter;
+import com.example.transaBuddy.domain.shipment.Shipment;
+import com.example.transaBuddy.domain.user.User;
+import lombok.Data;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 
-@Getter
-@Setter
+@Data
 @Entity
 @Table(name = "\"order\"")
 public class Order {

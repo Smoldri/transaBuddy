@@ -1,6 +1,5 @@
-package com.example.transaBuddy.transabuddy.order.pickup_dropoff.location;
+package com.example.transaBuddy.domain.order.pickupdropoff.location;
 
-import com.example.transaBuddy.temp.Location;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 

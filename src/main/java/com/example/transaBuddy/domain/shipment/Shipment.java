@@ -1,12 +1,11 @@
-package com.example.transaBuddy.temp;
+package com.example.transaBuddy.domain.shipment;
 
-import lombok.Getter;
-import lombok.Setter;
+import com.example.transaBuddy.domain.shipment.shipmentPrice.ShipmentPrice;
+import lombok.Data;
 
 import javax.persistence.*;
 
-@Getter
-@Setter
+@Data
 @Entity
 @Table(name = "shipment")
 public class Shipment {

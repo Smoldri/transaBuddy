@@ -1,5 +1,6 @@
-package com.example.transaBuddy.temp;
+package com.example.transaBuddy.domain.order.pickupdropoff.location;
 
+import com.example.transaBuddy.domain.order.pickupdropoff.location.district.District;
 import lombok.Data;
 
 import javax.persistence.*;
