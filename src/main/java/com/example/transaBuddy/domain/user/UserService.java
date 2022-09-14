@@ -42,7 +42,7 @@ public class UserService {
 
 
     public void updateContactsInfosWithUserIds(List<ContactInfo> contactInfos) {
-        for(ContactInfo contactInfo : contactInfos){
+        for (ContactInfo contactInfo : contactInfos) {
             User user = userRepository.getUserByUserId(contactInfo.getContactId());
             contactInfo.setUserId(user.getId());
         }
@@ -50,7 +50,8 @@ public class UserService {
 
     public void updateContactsInfosWithRoleNames(List<ContactInfo> contactInfos) {
         for (ContactInfo contactInfo : contactInfos) {
-        contactInfo.setRoleNames(userRoleService.findUserRolesByUserId(contactInfo));        }
+            contactInfo.setRoleNames(userRoleService.findUserRolesByUserId(contactInfo));
+        }
     }
 
     public User getUserByUserId(Integer senderUsedId) {
@@ -59,9 +60,9 @@ public class UserService {
 
     public void updateOrderInfosWithUserIds(List<OrderInfo> orderInfos) {
         for (OrderInfo orderInfo : orderInfos) {
-           User senderUser = (userRepository.getUserByUserId(orderInfo.getSenderUserId()));
-           orderInfo.setSenderUserId(senderUser.getId());
-            User courierUser = (userRepository.getUserByUserId(orderInfo.getSenderUserId()));
+            User senderUser = (userRepository.getUserByUserId(orderInfo.getSenderUserId()));
+            orderInfo.setSenderUserId(senderUser.getId());
+            User courierUser = (userRepository.getUserByUserId(orderInfo.getCourierUserId()));
             orderInfo.setCourierUserId(courierUser.getId());
         }
 
