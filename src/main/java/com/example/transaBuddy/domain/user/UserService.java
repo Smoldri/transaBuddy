@@ -5,6 +5,7 @@ import com.example.transaBuddy.temp.Contact;
 import com.example.transaBuddy.temp.User;
 import com.example.transaBuddy.transabuddy.contact.ContactInfo;
 import com.example.transaBuddy.transabuddy.user.UserRequest;
+import com.example.transaBuddy.transabuddy.user.UserResponse;
 import com.example.transaBuddy.validation.ValidationService;
 import org.springframework.stereotype.Service;
 
@@ -55,5 +56,11 @@ public class UserService {
 
     public User getUserByUserId(Integer senderUsedId) {
         return userRepository.getUserByUserId(senderUsedId);
+    }
+
+    public Boolean checkUserIsActive(Integer userId) {
+        System.out.println();
+        User user = userRepository.getUserByUserId(userId);
+        return user.getIsActive();
     }
 }
