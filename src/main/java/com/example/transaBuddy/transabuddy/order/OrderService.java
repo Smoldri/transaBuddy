@@ -11,6 +11,7 @@ import com.example.transaBuddy.transabuddy.shipment.ShipmentService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 
 @Service
@@ -18,7 +19,6 @@ public class OrderService {
 
     @Resource
     private OrderRepository orderRepository;
-
     @Resource
     private ShipmentService shipmentService;
     @Resource
@@ -27,6 +27,7 @@ public class OrderService {
     private UserService userService;
     @Resource
     private PickUpDropOffService pickUpDropOffService;
+
 
 
     public OrderResponse addNewOrder(OrderRequest request) {
@@ -40,5 +41,17 @@ public class OrderService {
         pickUpDropOffService.createAndAddDropOff(request, order);
 
         return orderMapper.orderToOrderResponse(order);
+    }
+
+    public List<Order> getAllOrders() {
+        return orderRepository.findAll();
+    }
+
+    public List<OrderInfo> mapOrderToOrderInfosAndAddSenderCourierAndShipmentIds(List<Order> orders) {
+        List<OrderInfo> orderInfos = orderMapper.orderToOrderInfos(orders);
+        userService.updateOrderInfosWithUserIds(orderInfos);
+        shipmentService.updateOrderInfosWithShipmentIds(orderInfos);
+        return orderInfos;
+
     }
 }

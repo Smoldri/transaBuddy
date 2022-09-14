@@ -4,6 +4,7 @@ import com.example.transaBuddy.domain.user.userrole.UserRoleService;
 import com.example.transaBuddy.temp.Contact;
 import com.example.transaBuddy.temp.User;
 import com.example.transaBuddy.transabuddy.contact.ContactInfo;
+import com.example.transaBuddy.transabuddy.order.OrderInfo;
 import com.example.transaBuddy.transabuddy.user.UserRequest;
 import com.example.transaBuddy.transabuddy.user.UserResponse;
 import com.example.transaBuddy.validation.ValidationService;
@@ -25,6 +26,7 @@ public class UserService {
     @Resource
     private UserRoleService userRoleService;
 
+
     public User createAndAddUser(UserRequest request, Contact contact) {
         User user = userMapper.userRequestToUser(request);
         user.setContact(contact);
@@ -40,12 +42,10 @@ public class UserService {
     }
 
 
-
     public void updateContactsInfosWithUserIds(List<ContactInfo> contactInfos) {
         for(ContactInfo contactInfo : contactInfos){
             User user = userRepository.getUserBy(contactInfo.getContactId());
             contactInfo.setUserId(user.getId());
-
         }
     }
 
@@ -56,6 +56,16 @@ public class UserService {
 
     public User getUserByUserId(Integer senderUsedId) {
         return userRepository.getUserByUserId(senderUsedId);
+    }
+
+    public void updateOrderInfosWithUserIds(List<OrderInfo> orderInfos) {
+        for (OrderInfo orderInfo : orderInfos) {
+           User senderUser = (userRepository.getUserByUserId(orderInfo.getSenderUserId()));
+           orderInfo.setSenderUserId(senderUser.getId());
+            User courierUser = (userRepository.getUserByUserId(orderInfo.getSenderUserId()));
+            orderInfo.setCourierUserId(courierUser.getId());
+        }
+
     }
 
     public Boolean checkUserIsActive(Integer userId) {
