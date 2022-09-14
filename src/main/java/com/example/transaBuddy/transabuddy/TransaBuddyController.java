@@ -29,11 +29,4 @@ public class TransaBuddyController {
         return orderService.addNewOrder(request);
     }
 
-    @GetMapping("/orders")
-    @Operation(summary = "Leiab kõik tellimused")
-    public List<OrderInfo> findOrders(Integer customerId) {
-        return null;
-    }
-
-
 }

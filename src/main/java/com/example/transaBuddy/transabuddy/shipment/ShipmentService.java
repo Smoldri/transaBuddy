@@ -2,11 +2,13 @@ package com.example.transaBuddy.transabuddy.shipment;
 
 import com.example.transaBuddy.temp.Shipment;
 import com.example.transaBuddy.temp.ShipmentPrice;
+import com.example.transaBuddy.transabuddy.order.OrderInfo;
 import com.example.transaBuddy.transabuddy.order.OrderRequest;
 import com.example.transaBuddy.transabuddy.shipment.shipmentprice.ShipmentPriceService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @Service
 public class ShipmentService {
@@ -24,5 +26,12 @@ public class ShipmentService {
         shipment.setShipmentPrice(shipmentPrice);
         return shipmentRepository.save(shipment);
 
+    }
+
+    public void updateOrderInfosWithShipmentIds(List<OrderInfo> orderInfos) {
+        for (OrderInfo orderInfo : orderInfos){
+            Shipment shipment = shipmentRepository.getShipmentById(orderInfo.getShipmentId());
+            orderInfo.setShipmentId((shipment.getId()));
+        }
     }
 }

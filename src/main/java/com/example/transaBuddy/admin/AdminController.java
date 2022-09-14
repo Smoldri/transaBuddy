@@ -1,6 +1,7 @@
 package com.example.transaBuddy.admin;
 
 import com.example.transaBuddy.transabuddy.contact.ContactInfo;
+import com.example.transaBuddy.transabuddy.order.OrderInfo;
 import com.example.transaBuddy.transabuddy.user.UserResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.web.bind.annotation.*;
@@ -30,6 +31,12 @@ public class AdminController {
     @Operation (summary = "Kasutajate leidmine erinevate parameetrite alusel")
     public List<ContactInfo> findContacts(String firstName, String lastName, String personalCode){
         return adminService.findContacts(firstName, lastName, personalCode);
+    }
+
+    @GetMapping("/orders")
+    @Operation(summary = "Leiab kõik tellimused")
+    public List<OrderInfo> getAllOrders() {
+        return adminService.getAllOrders();
     }
 
 }
