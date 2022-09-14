@@ -1,6 +1,5 @@
 package com.example.transaBuddy.domain.shipment;
 
-import com.example.transaBuddy.domain.shipment.Shipment;
 import com.example.transaBuddy.transabuddy.order.OrderRequest;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
