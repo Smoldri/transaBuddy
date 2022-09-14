@@ -11,11 +11,11 @@ import java.util.List;
 public class TransaBuddyService {
     @Resource
     OrderService orderService;
-//    public List<OrderInfo> findOrdersBySenderId(Integer senderId) {
-//        return orderService.findOrdersBySenderId(senderId);
-//    }
-//
-//    public List<OrderInfo> findOrdersByCourierId(Integer courierId) {
-//        return orderService.findOrdersByCourierId(courierId);
-//    }
+    public List<OrderInfo> findOrdersBySenderId(Integer senderId) {
+        return orderService.findOrdersBySenderId(senderId);
+    }
+
+    public List<OrderInfo> findOrdersByCourierId(Integer courierId) {
+        return orderService.findOrdersByCourierId(courierId);
+    }
 }
