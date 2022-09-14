@@ -1,6 +1,5 @@
 package com.example.transaBuddy.transabuddy.order;
 
-import com.example.transaBuddy.temp.User;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -13,7 +12,9 @@ public class OrderRequest implements Serializable {
     private LocalDate deliveryDate;
     private Integer fromHour;
     private Integer toHour;
+    private Integer pickUpDistrict;
     private String pickUpAddress;
+    private Integer dropOffDistrictId;
     private String dropOffAddress;
     private String receiverName;
     private String receiverPhoneNumber;

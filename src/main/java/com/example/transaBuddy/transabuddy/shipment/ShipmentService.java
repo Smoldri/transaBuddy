@@ -3,6 +3,7 @@ package com.example.transaBuddy.transabuddy.shipment;
 import com.example.transaBuddy.temp.Shipment;
 import com.example.transaBuddy.temp.ShipmentPrice;
 import com.example.transaBuddy.transabuddy.order.OrderRequest;
+import com.example.transaBuddy.transabuddy.shipment.shipmentprice.ShipmentPriceService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -17,11 +18,11 @@ public class ShipmentService {
     @Resource
     private ShipmentPriceService shipmentPriceService;
 
-    public Shipment addShipment (OrderRequest request){
+    public Shipment createAndAddShipment(OrderRequest request){
         Shipment shipment = shipmentMapper.orderRequestToShipment(request);
         ShipmentPrice shipmentPrice = shipmentPriceService.getShipmentPriceCategoryById(request.getShipmentPriceId());
         shipment.setShipmentPrice(shipmentPrice);
-        shipmentRepository.save(shipment);
-        return shipment;
+        return shipmentRepository.save(shipment);
+
     }
 }

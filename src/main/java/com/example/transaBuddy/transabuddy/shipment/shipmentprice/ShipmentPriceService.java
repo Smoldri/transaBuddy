@@ -1,4 +1,4 @@
-package com.example.transaBuddy.transabuddy.shipment;
+package com.example.transaBuddy.transabuddy.shipment.shipmentprice;
 
 import com.example.transaBuddy.temp.ShipmentPrice;
 import org.springframework.stereotype.Service;
