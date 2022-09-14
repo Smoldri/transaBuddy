@@ -1,7 +1,7 @@
 package com.example.transaBuddy.admin;
 
 import com.example.transaBuddy.transabuddy.contact.ContactInfo;
-import com.example.transaBuddy.transabuddy.shipment.shipmentprice.ShipmentPriceInfo;
+import com.example.transaBuddy.transabuddy.shipment.ShipmentPriceInfo;
 import com.example.transaBuddy.transabuddy.user.UserResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.web.bind.annotation.*;

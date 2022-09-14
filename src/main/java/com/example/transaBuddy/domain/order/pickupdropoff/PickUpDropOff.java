@@ -1,5 +1,7 @@
-package com.example.transaBuddy.temp;
+package com.example.transaBuddy.domain.order.pickupdropoff;
 
+import com.example.transaBuddy.domain.order.Order;
+import com.example.transaBuddy.domain.order.pickupdropoff.location.Location;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -8,8 +10,8 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Entity
-@Table(name = "order_image")
-public class OrderImage {
+@Table(name = "pickup_dropoff")
+public class PickUpDropOff {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
@@ -20,10 +22,10 @@ public class OrderImage {
     private Order order;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "image_id", nullable = false)
-    private Image image;
+    @JoinColumn(name = "location_id", nullable = false)
+    private Location location;
 
-    @Column(name = "type", length = 1)
+    @Column(name = "type", nullable = false, length = 1)
     private String type;
 
 }

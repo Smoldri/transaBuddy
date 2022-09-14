@@ -1,4 +1,4 @@
-package com.example.transaBuddy.transabuddy.shipment.shipmentprice;
+package com.example.transaBuddy.domain.shipment.shipmentPrice;
 
 import com.example.transaBuddy.domain.shipment.shipmentPrice.ShipmentPrice;
 import org.springframework.data.jpa.repository.JpaRepository;

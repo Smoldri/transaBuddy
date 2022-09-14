@@ -4,12 +4,12 @@ import com.example.transaBuddy.domain.contact.ContactService;
 import com.example.transaBuddy.domain.shipment.shipmentPrice.ShipmentPriceMapper;
 import com.example.transaBuddy.domain.user.UserRepository;
 import com.example.transaBuddy.domain.user.UserService;
-import com.example.transaBuddy.temp.Contact;
+import com.example.transaBuddy.domain.contact.Contact;
 import com.example.transaBuddy.domain.shipment.shipmentPrice.ShipmentPrice;
-import com.example.transaBuddy.temp.User;
+import com.example.transaBuddy.domain.user.User;
 import com.example.transaBuddy.transabuddy.contact.ContactInfo;
-import com.example.transaBuddy.transabuddy.shipment.shipmentprice.ShipmentPriceInfo;
-import com.example.transaBuddy.transabuddy.shipment.shipmentprice.ShipmentPriceService;
+import com.example.transaBuddy.domain.shipment.shipmentPrice.ShipmentPriceService;
+import com.example.transaBuddy.transabuddy.shipment.ShipmentPriceInfo;
 import com.example.transaBuddy.transabuddy.user.UserResponse;
 import org.springframework.stereotype.Service;
 

@@ -1,6 +1,5 @@
 package com.example.transaBuddy.domain.contact;
 
-import com.example.transaBuddy.temp.Contact;
 import com.example.transaBuddy.transabuddy.contact.ContactInfo;
 import com.example.transaBuddy.transabuddy.user.UserRequest;
 import org.mapstruct.Mapper;

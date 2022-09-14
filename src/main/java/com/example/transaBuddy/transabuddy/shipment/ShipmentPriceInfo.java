@@ -1,4 +1,4 @@
-package com.example.transaBuddy.transabuddy.shipment.shipmentprice;
+package com.example.transaBuddy.transabuddy.shipment;
 
 import lombok.Data;
 

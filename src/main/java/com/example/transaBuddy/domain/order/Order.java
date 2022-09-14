@@ -1,6 +1,7 @@
-package com.example.transaBuddy.temp;
+package com.example.transaBuddy.domain.order;
 
 import com.example.transaBuddy.domain.shipment.Shipment;
+import com.example.transaBuddy.domain.user.User;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -8,7 +9,7 @@ import java.time.LocalDate;
 
 @Data
 @Entity
-@Table(name = "order")
+@Table(name = "\"order\"")
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -1,6 +1,6 @@
 package com.example.transaBuddy.domain.shipment.shipmentPrice;
 
-import com.example.transaBuddy.transabuddy.shipment.shipmentprice.ShipmentPriceInfo;
+import com.example.transaBuddy.transabuddy.shipment.ShipmentPriceInfo;
 import org.mapstruct.*;
 
 import java.util.List;

@@ -1,6 +1,5 @@
 package com.example.transaBuddy.domain.order;
 
-import com.example.transaBuddy.temp.Order;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 

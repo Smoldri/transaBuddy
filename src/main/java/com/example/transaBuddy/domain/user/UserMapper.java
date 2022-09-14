@@ -1,6 +1,5 @@
 package com.example.transaBuddy.domain.user;
 
-import com.example.transaBuddy.temp.User;
 import com.example.transaBuddy.transabuddy.contact.ContactInfo;
 import com.example.transaBuddy.transabuddy.user.UserRequest;
 import com.example.transaBuddy.transabuddy.user.UserResponse;

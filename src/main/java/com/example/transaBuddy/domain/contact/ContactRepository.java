@@ -1,9 +1,7 @@
 package com.example.transaBuddy.domain.contact;
 
-import com.example.transaBuddy.temp.Contact;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.lang.Nullable;
 
 import java.util.List;
 

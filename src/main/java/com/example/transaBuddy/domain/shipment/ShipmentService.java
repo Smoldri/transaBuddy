@@ -1,13 +1,11 @@
-package com.example.transaBuddy.transabuddy.shipment;
+package com.example.transaBuddy.domain.shipment;
 
-import com.example.transaBuddy.domain.shipment.Shipment;
 import com.example.transaBuddy.domain.shipment.shipmentPrice.ShipmentPrice;
 import com.example.transaBuddy.transabuddy.order.OrderRequest;
-import com.example.transaBuddy.transabuddy.shipment.shipmentprice.ShipmentPriceService;
+import com.example.transaBuddy.domain.shipment.shipmentPrice.ShipmentPriceService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.util.List;
 
 @Service
 public class ShipmentService {

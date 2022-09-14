@@ -1,6 +1,5 @@
 package com.example.transaBuddy.domain.order;
 
-import com.example.transaBuddy.temp.Order;
 import com.example.transaBuddy.transabuddy.order.OrderInfo;
 import com.example.transaBuddy.transabuddy.order.OrderRequest;
 import com.example.transaBuddy.transabuddy.order.OrderResponse;

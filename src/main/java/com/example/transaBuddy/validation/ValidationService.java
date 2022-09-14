@@ -8,7 +8,7 @@ package com.example.transaBuddy.validation;
 
 import com.example.transaBuddy.infrastructure.exception.DataNotFoundException;
 import com.example.transaBuddy.domain.user.userrole.UserRole;
-import com.example.transaBuddy.temp.User;
+import com.example.transaBuddy.domain.user.User;
 
 import java.util.List;
 import java.util.Optional;

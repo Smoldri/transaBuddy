@@ -1,4 +1,4 @@
-package com.example.transaBuddy.transabuddy.shipment;
+package com.example.transaBuddy.domain.shipment;
 
 import com.example.transaBuddy.domain.shipment.Shipment;
 import com.example.transaBuddy.transabuddy.order.OrderRequest;

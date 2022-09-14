@@ -1,6 +1,5 @@
-package com.example.transaBuddy.transabuddy.shipment.shipmentprice;
+package com.example.transaBuddy.domain.shipment.shipmentPrice;
 
-import com.example.transaBuddy.domain.shipment.shipmentPrice.ShipmentPrice;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
