@@ -1,11 +1,8 @@
 package com.example.transaBuddy.transabuddy;
 
-
-import com.example.transaBuddy.domain.contact.ContactRepository;
 import com.example.transaBuddy.domain.contact.ContactService;
 import com.example.transaBuddy.domain.order.OrderService;
 import com.example.transaBuddy.domain.user.UserService;
-import com.example.transaBuddy.transabuddy.contact.ContactInfo;
 import com.example.transaBuddy.transabuddy.contact.ContactInfo;
 import com.example.transaBuddy.transabuddy.order.OrderInfo;
 import com.example.transaBuddy.transabuddy.order.OrderRequest;
