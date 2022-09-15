@@ -66,8 +66,6 @@ public class AdminController {
         adminService.updatePrice(shipmentPriceInfo);
     }
 
-
-
     @GetMapping("/orders/date")
     @Operation(summary = "Leiab kõik tellimused kuupäeva järgi")
     public List<OrderInfo> findAllOrderByDate(LocalDate date){

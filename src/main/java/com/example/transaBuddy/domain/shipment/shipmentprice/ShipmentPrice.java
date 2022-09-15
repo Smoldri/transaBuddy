@@ -1,5 +1,6 @@
 package com.example.transaBuddy.domain.shipment.shipmentprice;
 
+import com.example.transaBuddy.transabuddy.shipment.ShipmentPriceResponse;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -19,7 +20,7 @@ public class ShipmentPrice {
     @Column(name = "weight", nullable = false)
     private Integer weight;
 
-    @Column(name = "price", nullable = false)
+    @Column(name = "price", nullable = true)
     private Integer price;
 
     @Column(name = "type", nullable = false)

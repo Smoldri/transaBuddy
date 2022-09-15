@@ -3,6 +3,7 @@ package com.example.transaBuddy.domain.shipment.shipmentprice;
 import com.example.transaBuddy.transabuddy.shipment.ShipmentPriceInfo;
 import com.example.transaBuddy.transabuddy.shipment.ShipmentPriceRequest;
 import com.example.transaBuddy.transabuddy.shipment.ShipmentPriceResponse;
+import com.example.transaBuddy.validation.ValidationService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -18,7 +19,7 @@ public class ShipmentPriceService {
     private ShipmentPriceMapper shipmentPriceMapper;
 
     public ShipmentPrice getShipmentPriceCategoryById(Integer shipmentPriceId) {
-       return shipmentPriceRepository.getShipmentPriceById(shipmentPriceId);
+        return shipmentPriceRepository.getShipmentPriceById(shipmentPriceId);
     }
 
     public List<ShipmentPrice> getAllPrices() {
@@ -27,7 +28,10 @@ public class ShipmentPriceService {
 
     public ShipmentPriceResponse addPriceCategory(ShipmentPriceRequest request) {
         ShipmentPrice shipmentPrice = shipmentPriceMapper.shipmentPriceRequestToShipmentPrice(request);
-//        ValidationService.validatePriceTypeExists(getAllPrices(),shipmentPrice.getType());
+        boolean existsByType = shipmentPriceRepository.existsByType(shipmentPrice.getType());
+        if (existsByType){
+            ValidationService.validatePriceTypeExists();
+        }
         shipmentPriceRepository.save(shipmentPrice);
         return shipmentPriceMapper.shipmentPriceToShipmentPriceResponse(shipmentPrice);
     }

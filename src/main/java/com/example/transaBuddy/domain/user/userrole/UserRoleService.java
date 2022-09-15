@@ -29,7 +29,6 @@ public class UserRoleService {
     private UserRoleMapper userRoleMapper;
 
     public List<UserRole> getValidUserRoles(LoginRequest request) {
-        System.out.println();
         List<UserRole> userRoles = userRoleRepository.findUserRoleBy(request.getUsername(), request.getPassword());
         ValidationService.validatePasswordUserExists(userRoles);
         return userRoles;

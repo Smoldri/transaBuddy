@@ -98,7 +98,7 @@ CREATE TABLE shipment (
     id serial  NOT NULL,
     amount int  NOT NULL,
     description varchar(500)  NULL,
-    shipment_price_id int  NOT NULL,
+    shipment_price_id int  NULL,
     CONSTRAINT shipment_pk PRIMARY KEY (id)
 );
 

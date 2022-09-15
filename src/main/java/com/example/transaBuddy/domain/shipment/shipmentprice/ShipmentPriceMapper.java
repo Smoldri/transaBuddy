@@ -17,8 +17,6 @@ public interface ShipmentPriceMapper {
     ShipmentPrice shipmentPriceToShipmentPriceInfo(ShipmentPrice shipmentPrice);
     List<ShipmentPriceInfo> shipmentPricesToShipmentPriceInfos(List<ShipmentPrice> shipmentPrices);
 
-
-    @Mapping(source = "dimensions", target = "dimensions")
     ShipmentPrice shipmentPriceRequestToShipmentPrice(ShipmentPriceRequest request);
 
     @Mapping(source = "id", target = "shipmentPriceId")

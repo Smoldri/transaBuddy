@@ -26,10 +26,7 @@ public class ValidationService {
         }
     }
 
-    public static void validatePriceTypeExists(List<ShipmentPrice> shipmentPrices, String type) {
-
-        if (shipmentPrices.contains(type)) {
+    public static void validatePriceTypeExists() {
             throw new DataNotFoundException(CATEGORY_EXISTS, "Price with the same type already exists");
-        }
     }
 }

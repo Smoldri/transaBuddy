@@ -7,4 +7,13 @@ public interface ShipmentPriceRepository extends JpaRepository<ShipmentPrice, In
     @Query("select s from ShipmentPrice s where s.id = ?1")
     ShipmentPrice getShipmentPriceById(Integer id);
 
+    @Query("select s from ShipmentPrice s where s.type = ?1")
+    ShipmentPrice findByType(String type);
+
+    @Query("select (count(s) > 0) from ShipmentPrice s where upper(s.type) = upper(?1)")
+    boolean existsByType(String type);
+
+
+
+
 }
