@@ -1,9 +1,12 @@
 package com.example.transaBuddy.domain.order.orderimage.image;
 
+import com.example.transaBuddy.domain.order.orderimage.OrderImage;
+import com.example.transaBuddy.domain.order.orderimage.OrderImageInfo;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @RestController
 @RequestMapping("/transabuddy")
@@ -19,7 +22,10 @@ public class ImageController {
     }
 
 
-//    @GetMapping("/image")
-//    @Operation(summary = "Get images")
-//
+    @GetMapping("/image")
+    @Operation(summary = "Get images by order Id")
+    public List<OrderImageInfo> getImagesByOrderIdAndType(Integer orderId, String type){
+        return imageService.getImagesByOrderIdAndType(orderId, type);
+    }
+
 }
