@@ -21,7 +21,7 @@ public class ImageService {
         image.setBase64(base64AsByteArray);
         imageRepository.save(image);
         imageRepository.findById(image.getId());
-        orderImageService.addSenderPictureToOrder(request, image);
+        orderImageService.addPictureToOrder(request, image);
 
     }
 }
