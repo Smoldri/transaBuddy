@@ -1,5 +1,6 @@
 package com.example.transaBuddy.domain.order.orderimage.image;
 
+import com.example.transaBuddy.domain.order.orderimage.OrderImageService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -9,6 +10,8 @@ import java.nio.charset.StandardCharsets;
 public class ImageService {
     @Resource
     private ImageRepository imageRepository;
+    @Resource
+    private OrderImageService orderImageService;
 
 
     public void addPictureToOrder(ImageRequest request) {
@@ -18,7 +21,7 @@ public class ImageService {
         image.setBase64(base64AsByteArray);
         imageRepository.save(image);
         imageRepository.findById(image.getId());
-
+        orderImageService.addSenderPictureToOrder(request, image);
 
     }
 }

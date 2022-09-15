@@ -10,4 +10,5 @@ import lombok.NoArgsConstructor;
 public class ImageRequest {
     private Integer orderId;
     private String base64;
+    private String type;
 }
