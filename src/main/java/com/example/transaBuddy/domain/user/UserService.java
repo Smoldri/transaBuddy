@@ -1,5 +1,6 @@
 package com.example.transaBuddy.domain.user;
 
+import com.example.transaBuddy.domain.contact.ContactRepository;
 import com.example.transaBuddy.domain.user.userrole.UserRoleService;
 import com.example.transaBuddy.domain.contact.Contact;
 import com.example.transaBuddy.transabuddy.contact.ContactInfo;
@@ -24,6 +25,8 @@ public class UserService {
 
     @Resource
     private UserRoleService userRoleService;
+    @Resource
+    private ContactRepository contactRepository;
 
 
     public User createAndAddUser(UserRequest request, Contact contact) {
@@ -73,4 +76,12 @@ public class UserService {
         User user = userRepository.getUserByUserId(userId);
         return user.getIsActive();
     }
+
+    public void updateUserPassword(String newPassword, Integer userId) {
+        User user = userRepository.getReferenceById(userId);
+        user.setPassword(newPassword);
+        userRepository.save(user);
+    }
+
+
 }
