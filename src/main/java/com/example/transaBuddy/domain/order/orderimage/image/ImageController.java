@@ -17,8 +17,8 @@ public class ImageController {
 
     @PostMapping("/image")
     @Operation(summary = "Add image to order")
-    public void addPicture(@RequestBody ImageRequest image){
-        imageService.addPicture(image);
+    public void addPicture(@RequestBody ImageRequest request){
+        imageService.addPictureToOrder(request);
     }
 
 }
