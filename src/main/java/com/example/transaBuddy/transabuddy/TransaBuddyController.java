@@ -38,14 +38,19 @@ public class TransaBuddyController {
 
     @PostMapping("/order")
     @Operation(summary = "Lisab uue tellimuse")
-    public OrderResponse addNewOrder (@RequestBody OrderRequest request){
+    public OrderResponse addNewOrder(@RequestBody OrderRequest request) {
         return orderService.addNewOrder(request);
     }
+
     @PatchMapping("/order/status")
-    @Operation (summary = "Change order status")
-    public void updateOrderStatus (@RequestBody OrderResponse orderResponse, String status){
+    @Operation(summary = "Change order status")
+    public void updateOrderStatus(@RequestBody OrderResponse orderResponse, String status) {
         orderService.updateOrderStatus(orderResponse, status);
     }
 
-
+    @PatchMapping("/order/courier")
+    @Operation (summary = "Accept order and set courierID")
+    public void acceptOrderAndSetCourierId(@RequestBody OrderResponse response, Integer courierId) {
+        orderService.acceptOrderAndSetCourierId(response, courierId);
+    }
 }

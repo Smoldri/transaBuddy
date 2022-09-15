@@ -28,4 +28,7 @@ public interface OrderMapper {
     OrderResponse orderToOrderResponse(Order order);
 
     Order optionalOrderToOrder(Optional<Order> optionalOrder);
+
+    @Mapping(target = "id", source = "orderId")
+    Order orderResponseToOrder(OrderResponse response);
 }
