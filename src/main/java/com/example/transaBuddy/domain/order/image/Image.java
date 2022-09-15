@@ -1,4 +1,4 @@
-package com.example.transaBuddy.domain.order.orderimage.image;
+package com.example.transaBuddy.domain.order.image;
 
 import lombok.Getter;
 import lombok.Setter;
