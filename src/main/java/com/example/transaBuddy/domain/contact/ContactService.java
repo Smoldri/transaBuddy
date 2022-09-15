@@ -1,5 +1,7 @@
 package com.example.transaBuddy.domain.contact;
 
+import com.example.transaBuddy.domain.user.User;
+import com.example.transaBuddy.domain.user.UserRepository;
 import com.example.transaBuddy.domain.user.UserService;
 import com.example.transaBuddy.transabuddy.contact.ContactInfo;
 import com.example.transaBuddy.transabuddy.user.UserRequest;
@@ -19,6 +21,8 @@ public class ContactService {
 
     @Resource
     private UserService userService;
+    @Resource
+    private UserRepository userRepository;
 
 
     public Contact createAndAddContact(UserRequest request) {
@@ -46,6 +50,20 @@ public class ContactService {
         } else {
             return contactRepository.findByFirstNameOrLastNameOrPersonalCode(firstName, lastName, personalCode);
         }
+    }
+    public void updateContactInfo(ContactInfo contactInfo) {
+        User user = userRepository.getUserByUserId(contactInfo.getUserId());
+        Contact contact = user.getContact();
+        if(!contactInfo.getEmail().equals("")){
+            contact.setEmail(contactInfo.getEmail());
+        }
+        if (!contactInfo.getPhoneNumber().equals("")){
+            contact.setPhoneNumber(contactInfo.getPhoneNumber());
+        }
+        if(!contactInfo.getPersonalCode().equals((""))){
+            contact.setPersonalCode(contactInfo.getPersonalCode());
+        }
+        contactRepository.save(contact);
     }
 }
 
