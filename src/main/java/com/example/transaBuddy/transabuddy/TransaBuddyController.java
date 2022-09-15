@@ -6,10 +6,7 @@ import com.example.transaBuddy.transabuddy.order.OrderInfo;
 import com.example.transaBuddy.transabuddy.order.OrderRequest;
 import com.example.transaBuddy.transabuddy.order.OrderResponse;
 import io.swagger.v3.oas.annotations.Operation;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -43,5 +40,11 @@ public class TransaBuddyController {
     public OrderResponse addNewOrder (@RequestBody OrderRequest request){
         return orderService.addNewOrder(request);
     }
+    @PatchMapping("/order/status")
+    @Operation (summary = "Change order status")
+    public void updateOrderStatus (@RequestBody OrderResponse orderResponse, String status){
+        orderService.updateOrderStatus(orderResponse, status);
+    }
+
 
 }

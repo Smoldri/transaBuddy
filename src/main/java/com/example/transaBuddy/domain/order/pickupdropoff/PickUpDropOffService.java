@@ -8,6 +8,7 @@ import com.example.transaBuddy.domain.order.pickupdropoff.location.LocationServi
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -36,10 +37,4 @@ public class PickUpDropOffService {
         pickUpDropOffRepository.save(dropOff);
         return pickUpDropOffRepository.save(dropOff);
     }
-
-    public List<PickUpDropOff> findPickUpsAndDropOffsByLocationId(Integer locationId) {
-        return pickUpDropOffRepository.findByLocationId(locationId);
-        }
-
-
 }

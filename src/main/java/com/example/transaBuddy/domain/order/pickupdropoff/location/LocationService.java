@@ -41,9 +41,6 @@ public class LocationService {
         }
     }
 
-    public List <Location> findLocationsByDistrictId(Integer districtId) {
-        return locationRepository.findLocationsByDistrictId(districtId);
-    }
 
 
 }

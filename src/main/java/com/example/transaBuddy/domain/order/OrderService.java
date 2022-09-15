@@ -1,7 +1,5 @@
 package com.example.transaBuddy.domain.order;
 
-import com.example.transaBuddy.domain.order.pickupdropoff.PickUpDropOff;
-import com.example.transaBuddy.domain.order.pickupdropoff.location.Location;
 import com.example.transaBuddy.domain.order.pickupdropoff.location.LocationService;
 import com.example.transaBuddy.domain.user.UserService;
 import com.example.transaBuddy.domain.shipment.Shipment;
@@ -32,8 +30,7 @@ public class OrderService {
     @Resource
     private PickUpDropOffService pickUpDropOffService;
 
-    @Resource
-    private LocationService locationService;
+
 
     public OrderResponse addNewOrder(OrderRequest request) {
         Shipment shipment = shipmentService.createAndAddShipment(request);
@@ -63,25 +60,15 @@ public class OrderService {
         return orderMapper.ordersToOrderInfos(orders);
     }
 
-    public OrderInfo findOrderByOrderId(Integer orderId){
-        Optional<Order> optionalOrder = orderRepository.findById(orderId);
-        Order order = orderMapper.optionalOrderToOrder(optionalOrder);
-        return orderMapper.orderToOrderInfo(order);
-
-    }
-
     public List<OrderInfo> findAllOrdersByDate(LocalDate date) {
         List<Order> orders = orderRepository.findOrdersByDate(date);
         return orderMapper.ordersToOrderInfos(orders);
+
     }
 
-    public List<OrderInfo> findAllOrdersByDistricts(Integer pickUpDistrictId, Integer dropOffDistrictId) {
-        List<Location> pickUpLocations = locationService.findLocationsByDistrictId(pickUpDistrictId);
-        List<Location> dropOffLocations = locationService.findLocationsByDistrictId(dropOffDistrictId);
-        List<PickUpDropOff> pickUps = pickUpDropOffService.findPickUpsAndDropOffsByLocationId(List<>)
-                List<PickUpDropOff> dropOffs =
-
-
-
+    public void updateOrderStatus(OrderResponse orderResponse, String status) {
+       Order order = orderRepository.getReferenceById(orderResponse.getOrderId());
+       order.setStatus(status);
+       orderRepository.save(order);
     }
 }

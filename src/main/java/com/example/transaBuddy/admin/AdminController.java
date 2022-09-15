@@ -49,17 +49,20 @@ public class AdminController {
         return adminService.getAllOrders();
     }
 
-    // EI tööta
+
     @GetMapping("/orders/date")
     @Operation(summary = "Leiab kõik tellimused kuupäeva järgi")
     public List<OrderInfo> findAllOrderByDate(LocalDate date){
         return orderService.findAllOrdersByDate(date);
     }
 
-    @GetMapping ("/orders/district")
-    @Operation (summary = "Leiab kõik tellimused piirkonna järgi")
-    public List<OrderInfo> findAllOrdersByDistrict(Integer pickUpDistrictId, Integer dropOffDistrictId){
-        return orderService.findAllOrdersByDistricts(pickUpDistrictId, dropOffDistrictId);
-    }
+//    @GetMapping ("/orders/district")
+//    @Operation (summary = "Leiab kõik tellimused piirkonna järgi")
+//    public List<OrderInfo> findAllOrdersByDistrict(Integer pickUpDistrictId, Integer dropOffDistrictId){
+//        return orderService.findAllOrdersByDistricts(pickUpDistrictId, dropOffDistrictId);
+//    }
+//
+
+
 
 }
