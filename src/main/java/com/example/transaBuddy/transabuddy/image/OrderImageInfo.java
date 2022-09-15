@@ -1,4 +1,4 @@
-package com.example.transaBuddy.domain.order.orderimage.image;
+package com.example.transaBuddy.transabuddy.image;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,8 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ImageRequest {
-    private Integer orderId;
+public class OrderImageInfo {
+
     private String base64;
-    private String type;
 }

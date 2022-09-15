@@ -1,7 +1,7 @@
-package com.example.transaBuddy.domain.order.orderimage;
+package com.example.transaBuddy.domain.order.image.imageorder;
 
 import com.example.transaBuddy.domain.order.Order;
-import com.example.transaBuddy.domain.order.orderimage.image.Image;
+import com.example.transaBuddy.domain.order.image.Image;
 import lombok.Data;
 
 import javax.persistence.*;

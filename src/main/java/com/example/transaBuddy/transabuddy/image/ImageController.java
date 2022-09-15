@@ -1,7 +1,6 @@
-package com.example.transaBuddy.domain.order.orderimage.image;
+package com.example.transaBuddy.transabuddy.image;
 
-import com.example.transaBuddy.domain.order.orderimage.OrderImage;
-import com.example.transaBuddy.domain.order.orderimage.OrderImageInfo;
+import com.example.transaBuddy.domain.order.image.ImageService;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.web.bind.annotation.*;
 
