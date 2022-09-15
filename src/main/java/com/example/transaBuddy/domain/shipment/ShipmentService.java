@@ -1,7 +1,7 @@
 package com.example.transaBuddy.domain.shipment;
 
-import com.example.transaBuddy.domain.shipment.shipmentPrice.ShipmentPrice;
-import com.example.transaBuddy.domain.shipment.shipmentPrice.ShipmentPriceService;
+import com.example.transaBuddy.domain.shipment.shipmentprice.ShipmentPrice;
+import com.example.transaBuddy.domain.shipment.shipmentprice.ShipmentPriceService;
 import com.example.transaBuddy.transabuddy.order.OrderInfo;
 import com.example.transaBuddy.transabuddy.order.OrderRequest;
 import org.springframework.stereotype.Service;

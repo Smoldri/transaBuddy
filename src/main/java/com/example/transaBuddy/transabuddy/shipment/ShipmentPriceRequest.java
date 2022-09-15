@@ -3,8 +3,7 @@ package com.example.transaBuddy.transabuddy.shipment;
 import lombok.Data;
 
 @Data
-public class ShipmentPriceInfo {
-    private Integer shipmentPriceId;
+public class ShipmentPriceRequest {
     private String dimensions;
     private Integer weight;
     private Integer price;

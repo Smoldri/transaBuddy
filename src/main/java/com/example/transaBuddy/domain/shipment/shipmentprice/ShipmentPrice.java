@@ -1,4 +1,4 @@
-package com.example.transaBuddy.domain.shipment.shipmentPrice;
+package com.example.transaBuddy.domain.shipment.shipmentprice;
 
 import lombok.Data;
 
@@ -22,7 +22,7 @@ public class ShipmentPrice {
     @Column(name = "price", nullable = false)
     private Integer price;
 
-    @Column(name = "type", nullable = false, length = 2)
+    @Column(name = "type", nullable = false)
     private String type;
 
 }
