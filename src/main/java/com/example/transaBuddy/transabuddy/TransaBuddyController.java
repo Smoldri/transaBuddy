@@ -41,5 +41,11 @@ public class TransaBuddyController {
     public OrderResponse addNewOrder (@RequestBody OrderRequest request){
         return orderService.addNewOrder(request);
     }
+    @PatchMapping("/order/status")
+    @Operation (summary = "Change order status")
+    public void updateOrderStatus (@RequestBody OrderResponse orderResponse, String status){
+        orderService.updateOrderStatus(orderResponse, status);
+    }
+
 
 }

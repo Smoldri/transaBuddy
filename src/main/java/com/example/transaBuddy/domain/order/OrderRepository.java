@@ -3,6 +3,7 @@ package com.example.transaBuddy.domain.order;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -14,4 +15,6 @@ public interface OrderRepository extends JpaRepository<Order, Integer> {
     List<Order> findOrdersByCourierId(Integer courierId);
 
 
+    @Query("select o from Order o where o.deliveryDate = ?1")
+    List<Order> findOrdersByDate(LocalDate deliveryDate);
 }
