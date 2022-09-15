@@ -1,4 +1,4 @@
-package com.example.transaBuddy.transabuddy.image;
+package com.example.transaBuddy.transabuddy.image.orderimage;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

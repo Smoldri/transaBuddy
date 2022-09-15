@@ -1,6 +1,6 @@
 package com.example.transaBuddy.domain.order.image;
 
-import com.example.transaBuddy.transabuddy.image.OrderImageInfo;
+import com.example.transaBuddy.transabuddy.image.orderimage.OrderImageInfo;
 import com.example.transaBuddy.domain.order.image.imageorder.OrderImageService;
 import com.example.transaBuddy.transabuddy.image.ImageRequest;
 import org.springframework.stereotype.Service;

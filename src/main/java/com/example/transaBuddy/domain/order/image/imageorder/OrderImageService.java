@@ -4,7 +4,7 @@ import com.example.transaBuddy.domain.order.Order;
 import com.example.transaBuddy.domain.order.OrderRepository;
 import com.example.transaBuddy.domain.order.image.Image;
 import com.example.transaBuddy.transabuddy.image.ImageRequest;
-import com.example.transaBuddy.transabuddy.image.OrderImageInfo;
+import com.example.transaBuddy.transabuddy.image.orderimage.OrderImageInfo;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
