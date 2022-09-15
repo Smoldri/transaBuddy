@@ -2,15 +2,18 @@ package com.example.transaBuddy.domain.order;
 
 import com.example.transaBuddy.domain.shipment.Shipment;
 import com.example.transaBuddy.domain.user.User;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 
+
 @Data
 @Entity
 @Table(name = "\"order\"")
 public class Order {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
@@ -31,6 +34,7 @@ public class Order {
     private User courierUser;
 
     @Column(name = "delivery_date", nullable = false)
+    @JsonFormat(pattern="dd/MM/yyyy")
     private LocalDate deliveryDate;
 
     @Column(name = "from_hour", nullable = false)

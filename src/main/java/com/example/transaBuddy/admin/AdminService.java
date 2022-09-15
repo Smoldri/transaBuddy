@@ -17,6 +17,7 @@ import com.example.transaBuddy.transabuddy.user.UserResponse;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.time.LocalDate;
 import java.util.List;
 
 
@@ -58,8 +59,7 @@ public class AdminService {
     }
 
     public List<OrderInfo> getAllOrders() {
-        List<Order> orders = orderService.getAllOrders();
-        return orderService.mapOrderToOrderInfosAndAddSenderCourierAndShipmentIds(orders);
+        return orderService.getAllOrders();
     }
 
     public List<ShipmentPriceInfo> getAllPrices() {
@@ -67,5 +67,6 @@ public class AdminService {
         return shipmentPriceMapper.shipmentPricesToShipmentPriceInfos(shipmentPrices);
 
     }
+
 }
 

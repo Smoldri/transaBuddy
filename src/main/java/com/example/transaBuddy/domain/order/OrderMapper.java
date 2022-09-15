@@ -8,6 +8,7 @@ import org.mapstruct.Mapping;
 import org.mapstruct.ReportingPolicy;
 
 import java.util.List;
+import java.util.Optional;
 
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = "spring")
 public interface OrderMapper {
@@ -26,4 +27,5 @@ public interface OrderMapper {
     @Mapping(target = "orderId", source = "id")
     OrderResponse orderToOrderResponse(Order order);
 
+    Order optionalOrderToOrder(Optional<Order> optionalOrder);
 }
