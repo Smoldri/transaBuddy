@@ -108,7 +108,7 @@ CREATE TABLE shipment_price (
     dimensions varchar(255)  NOT NULL,
     weight int  NOT NULL,
     price int  NOT NULL,
-    type varchar(2)  NOT NULL,
+    type varchar(10)  NOT NULL,
     CONSTRAINT shipment_price_pk PRIMARY KEY (id)
 );
 

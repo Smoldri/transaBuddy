@@ -1,6 +1,6 @@
 package com.example.transaBuddy.domain.shipment;
 
-import com.example.transaBuddy.domain.shipment.shipmentPrice.ShipmentPrice;
+import com.example.transaBuddy.domain.shipment.shipmentprice.ShipmentPrice;
 import lombok.Data;
 
 import javax.persistence.*;
