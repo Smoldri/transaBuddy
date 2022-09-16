@@ -21,11 +21,15 @@ public interface OrderMapper {
 
     List<OrderInfo> ordersToOrderInfos(List<Order> orders);
 
-    @Mapping(target = "status", constant = "P")
+    @Mapping(target = "status", constant = "N")
     Order orderRequestToOrder(OrderRequest request);
 
     @Mapping(target = "orderId", source = "id")
     OrderResponse orderToOrderResponse(Order order);
 
     Order optionalOrderToOrder(Optional<Order> optionalOrder);
+
+    Order orderInfoToOrder(OrderInfo orderInfo);
+    @Mapping(target = "id", source = "orderId")
+    Order orderResponseToOrder(OrderResponse orderResponse);
 }

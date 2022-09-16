@@ -1,11 +1,13 @@
 package com.example.transaBuddy.domain.user.userrole;
 
+import com.example.transaBuddy.domain.user.UserMapper;
 import com.example.transaBuddy.domain.user.UserRepository;
 import com.example.transaBuddy.domain.user.role.RoleRepository;
 import com.example.transaBuddy.domain.user.role.Role;
 import com.example.transaBuddy.domain.user.User;
 import com.example.transaBuddy.transabuddy.contact.ContactInfo;
 import com.example.transaBuddy.transabuddy.login.LoginRequest;
+import com.example.transaBuddy.transabuddy.user.UserResponse;
 import com.example.transaBuddy.validation.ValidationService;
 import org.springframework.stereotype.Service;
 
@@ -28,6 +30,9 @@ public class UserRoleService {
     @Resource
     private UserRoleMapper userRoleMapper;
 
+    @Resource
+    private UserMapper userMapper;
+
     public List<UserRole> getValidUserRoles(LoginRequest request) {
         List<UserRole> userRoles = userRoleRepository.findUserRoleBy(request.getUsername(), request.getPassword());
         ValidationService.validatePasswordUserExists(userRoles);
@@ -49,6 +54,11 @@ public class UserRoleService {
         userRole.setUser(user);
         userRole.setRole(role);
         userRoleRepository.save(userRole);
+    }
+
+    public void addRoleNewRoleToUser(UserResponse userResponse, Role role) {
+        User user = userMapper.userResponseToUser(userResponse);
+        addRoleToUser(user, role);
     }
 }
 

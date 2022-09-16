@@ -2,11 +2,14 @@ package com.example.transaBuddy.admin;
 
 import com.example.transaBuddy.domain.shipment.shipmentprice.ShipmentPrice;
 import com.example.transaBuddy.domain.order.OrderService;
+import com.example.transaBuddy.domain.user.role.Role;
+import com.example.transaBuddy.domain.user.userrole.UserRoleService;
 import com.example.transaBuddy.transabuddy.contact.ContactInfo;
 import com.example.transaBuddy.transabuddy.shipment.ShipmentPriceInfo;
 import com.example.transaBuddy.transabuddy.order.OrderInfo;
 import com.example.transaBuddy.transabuddy.shipment.ShipmentPriceRequest;
 import com.example.transaBuddy.transabuddy.shipment.ShipmentPriceResponse;
+import com.example.transaBuddy.transabuddy.user.UserRequest;
 import com.example.transaBuddy.transabuddy.user.UserResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.web.bind.annotation.*;
@@ -22,7 +25,8 @@ public class AdminController {
     private AdminService adminService;
 
     @Resource
-    private OrderService orderService;
+    private UserRoleService userRoleService;
+
     @PatchMapping("/user/status")
     @Operation(summary = "Kliendi või kulleri konto  isActive staatuse muutmine")
     public void updateUserIsActiveStatus(@RequestBody UserResponse userResponse) {
@@ -66,6 +70,11 @@ public class AdminController {
         adminService.updatePrice(shipmentPriceInfo);
     }
 
+    @PostMapping ("/user/role")
+    @Operation (summary = "Add new role to user")
+    public void addNewRoleToUser (UserResponse userResponse, Role role){
+        userRoleService.addRoleNewRoleToUser(userResponse, role);
+    }
 
 //    @GetMapping ("/orders/district")
 //    @Operation (summary = "Leiab kõik tellimused piirkonna järgi")

@@ -37,11 +37,10 @@ public class TransaBuddyController {
     }
 
     @GetMapping("/orders/date")
-    @Operation(summary = "Leiab kõik tellimused kuupäeva järgi")
+    @Operation(summary = "FInd all orders by dates")
     public List<OrderInfo> findAllOrderByDates(@DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate, @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endDate ){
         return orderService.findAllOrdersByDates(startDate, endDate);
     }
-
 
     @PostMapping("/order")
     @Operation(summary = "Lisab uue tellimuse")
@@ -50,9 +49,33 @@ public class TransaBuddyController {
     }
     @PatchMapping("/order/status")
     @Operation (summary = "Change order status")
-    public void updateOrderStatus (@RequestBody OrderResponse orderResponse, String status){
-        orderService.updateOrderStatus(orderResponse, status);
+    public void updateOrderStatus (@RequestBody OrderInfo orderInfo, String status){
+        orderService.updateOrderStatus(orderInfo, status);
+    }
+    @PatchMapping("/order/delete")
+    @Operation (summary = "Delete order")
+    public void deleteOrder(OrderInfo orderInfo){
+        orderService.deleteOrder(orderInfo);
     }
 
-
+    @PatchMapping("/order/accepted")
+    @Operation (summary = "Order delivery accepted by courier")
+    public void acceptOrder(OrderResponse orderResponse, Integer courierId){
+        orderService.acceptOrder(orderResponse, courierId);
+    }
+    @PatchMapping("/order/rejected")
+    @Operation (summary = "Accepted order rejection by courier")
+    public void rejectOrder(OrderInfo orderInfo, Integer courierId){
+        orderService.rejectOrder(orderInfo, courierId);
+    }
+    @PatchMapping("/order/pickedup")
+    @Operation (summary = "Order picked up by courier")
+    public void confirmOrderPickUp (OrderInfo orderInfo, Integer courierId){
+        orderService.confirmOrderPickUp(orderInfo, courierId);
+    }
+    @PatchMapping("/order/delivery")
+    @Operation (summary = "Order delivered by courier")
+    public void confirmOrderDelivery (OrderInfo orderInfo, Integer courierId){
+        orderService.confirmOrderDelivery(orderInfo, courierId);
+    }
 }
