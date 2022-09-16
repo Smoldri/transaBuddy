@@ -16,6 +16,7 @@ import javax.annotation.Resource;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
+import java.util.Optional;
 
 
 @Service
@@ -73,42 +74,34 @@ public class OrderService {
 //        }
     }
 
-    public void updateOrderStatus(OrderInfo orderInfo, String status) {
-        Order order = orderMapper.orderInfoToOrder(orderInfo);
-        order.setStatus(status);
-        orderRepository.save(order);
-    }
-
-    public void acceptOrder(OrderResponse orderResponse, Integer courierId) {
-        Order order = orderMapper.orderResponseToOrder(orderResponse);
+    public void acceptOrder(Integer orderId, Integer courierId) {
+        Order order = orderRepository.findById(orderId).get();
         order.setCourierUser(userRepository.getUserByUserId(courierId));
         order.setStatus("A"); //ACCEPTED
         orderRepository.save(order);
     }
 
-    public void rejectOrder (OrderInfo orderInfo, Integer courierId) {
-        Order order = orderMapper.orderInfoToOrder(orderInfo);
+    public void rejectOrder (Integer orderId) {
+        Order order = orderRepository.findById(orderId).get();
         order.setCourierUser(null);
         order.setStatus("N"); // NEW
         orderRepository.save(order);
     }
 
-    public void confirmOrderPickUp(OrderInfo orderInfo, Integer courierId) {
-        Order order = orderMapper.orderInfoToOrder(orderInfo);
-        order.setCourierUser(userRepository.getUserByUserId(courierId));
+    public void confirmOrderPickUp(Integer orderId) {
+        Order order = orderRepository.findById(orderId).get();
         order.setStatus("P"); // PICKED UP
         orderRepository.save(order);
     }
 
-    public void confirmOrderDelivery(OrderInfo orderInfo, Integer courierId) {
-        Order order = orderMapper.orderInfoToOrder(orderInfo);
-        order.setCourierUser(userRepository.getUserByUserId(courierId));
+    public void confirmOrderDelivery(Integer orderId) {
+        Order order = orderRepository.findById(orderId).get();
         order.setStatus("C"); // COMPLETED
         orderRepository.save(order);
     }
 
-    public void deleteOrder(OrderInfo orderInfo) {
-        Order order = orderMapper.orderInfoToOrder(orderInfo);
+    public void deleteOrder(Integer orderId) {
+        Order order = orderRepository.findById(orderId).get();
         order.setCourierUser(null);
         order.setStatus("D"); // DELETED
         orderRepository.save(order);

@@ -47,35 +47,30 @@ public class TransaBuddyController {
     public OrderResponse addNewOrder (@RequestBody OrderRequest request){
         return orderService.addNewOrder(request);
     }
-    @PatchMapping("/order/status")
-    @Operation (summary = "Change order status")
-    public void updateOrderStatus (@RequestBody OrderInfo orderInfo, String status){
-        orderService.updateOrderStatus(orderInfo, status);
-    }
     @PatchMapping("/order/delete")
     @Operation (summary = "Delete order")
-    public void deleteOrder(OrderInfo orderInfo){
-        orderService.deleteOrder(orderInfo);
+    public void deleteOrder(Integer orderId){
+        orderService.deleteOrder(orderId);
     }
 
     @PatchMapping("/order/accepted")
     @Operation (summary = "Order delivery accepted by courier")
-    public void acceptOrder(OrderResponse orderResponse, Integer courierId){
-        orderService.acceptOrder(orderResponse, courierId);
+    public void acceptOrder(Integer orderId, Integer courierId){
+        orderService.acceptOrder(orderId, courierId);
     }
     @PatchMapping("/order/rejected")
     @Operation (summary = "Accepted order rejection by courier")
-    public void rejectOrder(OrderInfo orderInfo, Integer courierId){
-        orderService.rejectOrder(orderInfo, courierId);
+    public void rejectOrder(Integer orderId){
+        orderService.rejectOrder(orderId);
     }
     @PatchMapping("/order/pickedup")
     @Operation (summary = "Order picked up by courier")
-    public void confirmOrderPickUp (OrderInfo orderInfo, Integer courierId){
-        orderService.confirmOrderPickUp(orderInfo, courierId);
+    public void confirmOrderPickUp (Integer orderId){
+        orderService.confirmOrderPickUp(orderId);
     }
     @PatchMapping("/order/delivery")
     @Operation (summary = "Order delivered by courier")
-    public void confirmOrderDelivery (OrderInfo orderInfo, Integer courierId){
-        orderService.confirmOrderDelivery(orderInfo, courierId);
+    public void confirmOrderDelivery (Integer orderId){
+        orderService.confirmOrderDelivery(orderId);
     }
 }

@@ -30,6 +30,7 @@ public interface OrderMapper {
     Order optionalOrderToOrder(Optional<Order> optionalOrder);
 
     Order orderInfoToOrder(OrderInfo orderInfo);
-    @Mapping(target = "id", source = "orderId")
+
+
     Order orderResponseToOrder(OrderResponse orderResponse);
 }
