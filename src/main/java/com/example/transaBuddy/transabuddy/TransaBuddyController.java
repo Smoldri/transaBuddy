@@ -28,10 +28,16 @@ public class TransaBuddyController {
     private OrderService orderService;
 
 
-    @GetMapping("/orders/user")
+    @GetMapping("/user/orders")
     @Operation(summary = "Find all orders by user ID")
     public List<OrderInfo> findOrdersByUserId(Integer userId) {
         return transaBuddyService.findOrdersByUserId(userId);
+    }
+
+    @GetMapping("/user/active-orders")
+    @Operation(summary = "Find all active orders by user ID")
+    public List<OrderInfo> findUserOrdersByStatus(@RequestParam Integer userId, @RequestParam String status) {
+        return transaBuddyService.findUserOrdersByStatus(userId, status);
     }
 
 
