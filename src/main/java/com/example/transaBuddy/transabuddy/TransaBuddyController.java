@@ -1,7 +1,9 @@
 package com.example.transaBuddy.transabuddy;
 
-
+import com.example.transaBuddy.domain.contact.ContactService;
 import com.example.transaBuddy.domain.order.OrderService;
+import com.example.transaBuddy.domain.user.UserService;
+import com.example.transaBuddy.transabuddy.contact.ContactInfo;
 import com.example.transaBuddy.transabuddy.order.OrderInfo;
 import com.example.transaBuddy.transabuddy.order.OrderRequest;
 import com.example.transaBuddy.transabuddy.order.OrderResponse;
@@ -17,6 +19,10 @@ public class TransaBuddyController {
 
     @Resource
     private TransaBuddyService transaBuddyService;
+    @Resource
+    private UserService userService;
+    @Resource
+    private ContactService contactService;
 
     @Resource
     private OrderService orderService;
@@ -33,6 +39,17 @@ public class TransaBuddyController {
     @Operation(summary = "Lisab uue tellimuse")
     public OrderResponse addNewOrder(@RequestBody OrderRequest request) {
         return orderService.addNewOrder(request);
+    }
+    @PatchMapping("/user/password")
+    @Operation(summary = "Change password")
+    public void updateUserPassword(String newPassword, Integer userId) {
+        userService.updateUserPassword(newPassword, userId);
+    }
+    @PatchMapping("/user/contacts")
+    @Operation(summary = "Change contact info")
+    public void updateContactInfo(ContactInfo contactInfo) {
+        contactService.updateContactInfo(contactInfo);
+
     }
 
     @PatchMapping("/order/status")
