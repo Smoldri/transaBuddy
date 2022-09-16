@@ -18,23 +18,16 @@ public class TransaBuddyController {
     @Resource
     private TransaBuddyService transaBuddyService;
 
-
-    @GetMapping("/order/sender")
-    @Operation(summary = "Find all orders by sender ID")
-    public List<OrderInfo> findOrdersBySenderId(Integer senderId) {
-        return transaBuddyService.findOrdersBySenderId(senderId);
-    }
-
-
-    @GetMapping("/order/courier")
-    @Operation(summary = "Find all orders by courier ID")
-    public List<OrderInfo> findOrdersByCourierId(Integer courierId) {
-
-        return transaBuddyService.findOrdersByCourierId(courierId);
-    }
-
     @Resource
     private OrderService orderService;
+
+
+    @GetMapping("/orders/user")
+    @Operation(summary = "Find all orders by user ID")
+    public List<OrderInfo> findOrdersByUserId(Integer userId) {
+        return transaBuddyService.findOrdersByUserId(userId);
+    }
+
 
     @PostMapping("/order")
     @Operation(summary = "Lisab uue tellimuse")

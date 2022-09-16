@@ -5,14 +5,14 @@ import org.springframework.data.jpa.repository.Query;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Optional;
 
 public interface OrderRepository extends JpaRepository<Order, Integer> {
-    @Query("select o from Order o where o.senderUser.id = ?1")
-    List<Order> findOrdersBySenderId(Integer id);
+    @Query("select o from Order o where o.senderUser.id = ?1 or o.courierUser.id = ?2")
+    List<Order> findOrdersByUserId(Integer id, Integer id1);
 
-    @Query("select o from Order o where o.courierUser.id = ?1")
-    List<Order> findOrdersByCourierId(Integer courierId);
+
+
+
 
 
     @Query("select o from Order o where o.deliveryDate = ?1")

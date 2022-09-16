@@ -49,15 +49,11 @@ public class OrderService {
         return orderMapper.ordersToOrderInfos(orders);
     }
 
-    public List<OrderInfo> findOrdersBySenderId(Integer senderId) {
-        List<Order> orders = orderRepository.findOrdersBySenderId(senderId);
+    public List<OrderInfo> findOrdersByUserId(Integer userId) {
+        List<Order> orders = orderRepository.findOrdersByUserId(userId, userId);
         return orderMapper.ordersToOrderInfos(orders);
     }
 
-    public List<OrderInfo> findOrdersByCourierId(Integer courierId) {
-        List<Order> orders = orderRepository.findOrdersByCourierId(courierId);
-        return orderMapper.ordersToOrderInfos(orders);
-    }
 
     public List<OrderInfo> findAllOrdersByDate(LocalDate date) {
         List<Order> orders = orderRepository.findOrdersByDate(date);
