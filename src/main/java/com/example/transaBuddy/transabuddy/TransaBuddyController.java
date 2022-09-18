@@ -64,9 +64,5 @@ public class TransaBuddyController {
         orderService.updateOrderStatus(orderResponse, status);
     }
 
-    @PatchMapping("/order/courier")
-    @Operation (summary = "Accept order and set courierID")
-    public void acceptOrderAndSetCourierId(@RequestBody OrderResponse response, Integer courierId) {
-        orderService.acceptOrderAndSetCourierId(response, courierId);
-    }
+
 }

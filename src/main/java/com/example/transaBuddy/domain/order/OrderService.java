@@ -4,7 +4,6 @@ import com.example.transaBuddy.domain.order.pickupdropoff.PickUpDropOffService;
 import com.example.transaBuddy.domain.shipment.Shipment;
 import com.example.transaBuddy.domain.shipment.ShipmentService;
 import com.example.transaBuddy.domain.user.User;
-import com.example.transaBuddy.domain.user.UserRepository;
 import com.example.transaBuddy.domain.user.UserService;
 import com.example.transaBuddy.transabuddy.order.OrderInfo;
 import com.example.transaBuddy.transabuddy.order.OrderRequest;
@@ -30,8 +29,6 @@ public class OrderService {
     private UserService userService;
     @Resource
     private PickUpDropOffService pickUpDropOffService;
-    @Resource
-    private UserRepository userRepository;
 
 
     public OrderResponse addNewOrder(OrderRequest request) {
@@ -63,29 +60,5 @@ public class OrderService {
                 filter(orderInfo -> orderInfo.getStatus().contains(status)).collect(Collectors.toList());
         ValidationService.validateStatusOrdersExist(statusOrderInfos, status);
         return statusOrderInfos;
-
-
     }
-
-
-    public List<OrderInfo> findAllOrdersByDate(LocalDate date) {
-        List<Order> orders = orderRepository.findOrdersByDate(date);
-        return orderMapper.ordersToOrderInfos(orders);
-    }
-
-    public void updateOrderStatus(OrderResponse orderResponse, String status) {
-        Order order = orderRepository.getReferenceById(orderResponse.getOrderId());
-        order.setStatus(status);
-        orderRepository.save(order);
-    }
-
-    public void acceptOrderAndSetCourierId(OrderResponse response, Integer courierId) {
-        Order order = orderRepository.getReferenceById(response.getOrderId());
-        User user = userRepository.getUserByUserId(courierId);
-        order.setStatus("A");
-        order.setCourierUser(user);
-        orderRepository.save(order);
-    }
-
-
 }
