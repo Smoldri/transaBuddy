@@ -6,19 +6,16 @@ import com.example.transaBuddy.domain.user.UserService;
 import com.example.transaBuddy.domain.shipment.Shipment;
 import com.example.transaBuddy.domain.shipment.ShipmentService;
 import com.example.transaBuddy.domain.user.User;
-import com.example.transaBuddy.domain.user.UserService;
+
 import com.example.transaBuddy.transabuddy.order.OrderInfo;
 import com.example.transaBuddy.transabuddy.order.OrderRequest;
 import com.example.transaBuddy.transabuddy.order.OrderResponse;
-import com.example.transaBuddy.validation.ValidationService;
-import com.example.transaBuddy.domain.order.pickupdropoff.PickUpDropOffService;
-import com.example.transaBuddy.domain.shipment.ShipmentService;
 import com.example.transaBuddy.validation.ValidationService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.time.LocalDate;
-import java.time.LocalTime;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -60,14 +57,6 @@ public class OrderService {
         List<Order> orders = orderRepository.findOrdersByUserId(userId, userId);
         ValidationService.validateOrdersExist(orders);
         return orderMapper.ordersToOrderInfos(orders);
-    public List<OrderInfo> findOrdersBySenderId(Integer senderId) {
-        List<Order> orders = orderRepository.findOrdersBySenderId(senderId);
-        return orderMapper.ordersToOrderInfos(orders);
-    }
-
-    public List<OrderInfo> findOrdersByCourierId(Integer courierId) {
-        List<Order> orders = orderRepository.findOrdersByCourierId(courierId);
-        return orderMapper.ordersToOrderInfos(orders);
     }
 
     public List<OrderInfo> findAllOrdersByDates(LocalDate startDate, LocalDate endDate) {
@@ -101,7 +90,6 @@ public class OrderService {
         ValidationService.validateStatusOrdersExist(statusOrderInfos, status);
         return statusOrderInfos;
     }
-}
     public void confirmOrderPickUp(Integer orderId) {
         Order order = orderRepository.findById(orderId).get();
         order.setStatus("P"); // PICKED UP
@@ -120,6 +108,5 @@ public class OrderService {
         order.setStatus("D"); // DELETED
         orderRepository.save(order);
         }
-
     }
 

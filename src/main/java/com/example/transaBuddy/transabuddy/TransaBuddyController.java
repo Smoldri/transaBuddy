@@ -24,19 +24,6 @@ public class TransaBuddyController {
     @Resource
     private OrderService orderService;
 
-    @GetMapping("/order/sender")
-    @Operation(summary = "Find all orders by sender ID")
-    public List<OrderInfo> findOrdersBySenderId(Integer senderId) {
-        return transaBuddyService.findOrdersBySenderId(senderId);
-    }
-
-
-    @GetMapping("/order/courier")
-    @Operation(summary = "Find all orders by courier ID")
-    public List<OrderInfo> findOrdersByCourierId(Integer courierId) {
-
-        return transaBuddyService.findOrdersByCourierId(courierId);
-    }
     @Resource
     private UserService userService;
     @Resource
@@ -47,7 +34,6 @@ public class TransaBuddyController {
     public List<OrderInfo> findAllOrderByDates(@DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate, @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endDate ){
         return orderService.findAllOrdersByDates(startDate, endDate);
     }
-
 
     @GetMapping("/user/orders")
     @Operation(summary = "Find all orders by user ID")
@@ -61,7 +47,6 @@ public class TransaBuddyController {
         return transaBuddyService.findUserOrdersByStatus(userId, status);
     }
 
-
     @PostMapping("/order")
     @Operation(summary = "Lisab uue tellimuse")
     public OrderResponse addNewOrder(@RequestBody OrderRequest request) {
@@ -71,18 +56,14 @@ public class TransaBuddyController {
     @Operation(summary = "Change password")
     public void updateUserPassword(String newPassword, Integer userId) {
         userService.updateUserPassword(newPassword, userId);
+
     }
     @PatchMapping("/user/contacts")
     @Operation(summary = "Change contact info")
     public void updateContactInfo(ContactInfo contactInfo) {
         contactService.updateContactInfo(contactInfo);
-
     }
 
-    @PatchMapping("/order/status")
-    @Operation(summary = "Change order status")
-    public void updateOrderStatus(@RequestBody OrderResponse orderResponse, String status) {
-        orderService.updateOrderStatus(orderResponse, status);
     @PatchMapping("/order/delete")
     @Operation (summary = "Delete order")
     public void deleteOrder(Integer orderId){
@@ -94,6 +75,7 @@ public class TransaBuddyController {
     public void acceptOrder(Integer orderId, Integer courierId){
         orderService.acceptOrder(orderId, courierId);
     }
+
     @PatchMapping("/order/rejected")
     @Operation (summary = "Accepted order rejection by courier")
     public void rejectOrder(Integer orderId){

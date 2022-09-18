@@ -1,7 +1,5 @@
 package com.example.transaBuddy.admin;
 
-import com.example.transaBuddy.domain.shipment.shipmentprice.ShipmentPrice;
-import com.example.transaBuddy.domain.order.OrderService;
 import com.example.transaBuddy.domain.user.role.Role;
 import com.example.transaBuddy.domain.user.userrole.UserRoleService;
 import com.example.transaBuddy.transabuddy.contact.ContactInfo;
@@ -9,12 +7,10 @@ import com.example.transaBuddy.transabuddy.shipment.ShipmentPriceInfo;
 import com.example.transaBuddy.transabuddy.order.OrderInfo;
 import com.example.transaBuddy.transabuddy.shipment.ShipmentPriceRequest;
 import com.example.transaBuddy.transabuddy.shipment.ShipmentPriceResponse;
-import com.example.transaBuddy.transabuddy.user.UserRequest;
 import com.example.transaBuddy.transabuddy.user.UserResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
-import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -82,7 +78,5 @@ public class AdminController {
 //        return orderService.findAllOrdersByDistricts(pickUpDistrictId, dropOffDistrictId);
 //    }
 //
-
-
 
 }
