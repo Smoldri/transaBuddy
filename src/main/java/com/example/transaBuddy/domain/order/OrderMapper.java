@@ -21,7 +21,7 @@ public interface OrderMapper {
 
     List<OrderInfo> ordersToOrderInfos(List<Order> orders);
 
-    @Mapping(target = "status", constant = "P")
+    @Mapping(target = "status", constant = "N")
     Order orderRequestToOrder(OrderRequest request);
 
     @Mapping(target = "orderId", source = "id")
@@ -31,4 +31,9 @@ public interface OrderMapper {
 
     @Mapping(target = "id", source = "orderId")
     Order orderResponseToOrder(OrderResponse response);
+
+    Order orderInfoToOrder(OrderInfo orderInfo);
+
+
+    Order orderResponseToOrder(OrderResponse orderResponse);
 }

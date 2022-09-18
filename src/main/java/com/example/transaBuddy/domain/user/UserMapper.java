@@ -22,4 +22,6 @@ public interface UserMapper {
     ContactInfo userToContactInfo(User user);
 
 
+    @Mapping(target = "id", source = "userId")
+    User userResponseToUser(UserResponse userResponse);
 }
