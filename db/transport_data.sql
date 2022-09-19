@@ -45,12 +45,15 @@ INSERT INTO public."order" (id, sender_user_id, receiver_name, receiver_phone_nu
 INSERT INTO public."order" (id, sender_user_id, receiver_name, receiver_phone_number, courier_user_id, delivery_date, from_hour, to_hour, comment, status, shipment_id) VALUES (DEFAULT, 4, 'Kristi', '3333', 3, '2022-09-27', 13, 17, 'ei ole kiire', 'D', 3);
 INSERT INTO public."order" (id, sender_user_id, receiver_name, receiver_phone_number, courier_user_id, delivery_date, from_hour, to_hour, comment, status, shipment_id) VALUES (DEFAULT, 4, 'Siim', '4444', 4, '2022-09-27', 15, 16, 'õrn kaup', 'C', 4);
 
+INSERT INTO public.pickup_dropoff (id, order_id, location_id, type) VALUES (DEFAULT, 1, 1, 'P');
+INSERT INTO public.pickup_dropoff (id, order_id, location_id, type) VALUES (DEFAULT, 1, 2, 'D');
 INSERT INTO public.pickup_dropoff (id, order_id, location_id, type) VALUES (DEFAULT, 2, 1, 'P');
 INSERT INTO public.pickup_dropoff (id, order_id, location_id, type) VALUES (DEFAULT, 2, 2, 'D');
 INSERT INTO public.pickup_dropoff (id, order_id, location_id, type) VALUES (DEFAULT, 4, 3, 'P');
 INSERT INTO public.pickup_dropoff (id, order_id, location_id, type) VALUES (DEFAULT, 4, 1, 'D');
 INSERT INTO public.pickup_dropoff (id, order_id, location_id, type) VALUES (DEFAULT, 3, 3, 'P');
 INSERT INTO public.pickup_dropoff (id, order_id, location_id, type) VALUES (DEFAULT, 3, 1, 'D');
+
 
 
 INSERT INTO public.image (id, base64)
