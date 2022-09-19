@@ -19,6 +19,9 @@ public interface OrderRepository extends JpaRepository<Order, Integer> {
     @Query("select o from Order o where o.deliveryDate >= ?1 and o.deliveryDate <= ?2")
     List<Order> findOrderByStartDateOrEndDate(LocalDate deliveryDate, LocalDate deliveryDate1);
 
+    @Query("select o from Order o where o.status = ?1 or o.status = ?2 or o.status = ?3")
+    List<Order> findAllActiveOrders(String status, String status1, String status2);
+
 
 
 }

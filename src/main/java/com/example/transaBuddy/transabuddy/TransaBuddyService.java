@@ -17,11 +17,15 @@ public class TransaBuddyService {
         return orderService.findOrdersByUserId(userId);
     }
 
-    public List<OrderInfo> findUserOrdersByStatus(Integer userId, String status) {
-        return orderService.findUserOrdersByStatus(userId, status);
+    public List<OrderInfo> findActiveOrdersByUserId(Integer userId) {
+        return orderService.findActiveOrdersByUserId(userId);
     }
 
     public OrderInfo findOrderByOrderId(Integer orderId) {
         return orderService.findOrderByOrderId(orderId);
+    }
+
+    public List<OrderInfo> findAllActiveOrders() {
+        return orderService.findAllActiveOrders();
     }
 }

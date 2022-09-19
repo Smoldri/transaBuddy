@@ -4,13 +4,11 @@ import com.example.transaBuddy.domain.order.pickupdropoff.PickUpDropOff;
 import com.example.transaBuddy.domain.order.pickupdropoff.PickUpDropOffRepository;
 import com.example.transaBuddy.domain.order.pickupdropoff.PickUpDropOffService;
 import com.example.transaBuddy.domain.order.pickupdropoff.location.Location;
-import com.example.transaBuddy.domain.order.pickupdropoff.location.LocationRepository;
-import com.example.transaBuddy.domain.user.UserRepository;
-import com.example.transaBuddy.domain.user.UserService;
 import com.example.transaBuddy.domain.shipment.Shipment;
 import com.example.transaBuddy.domain.shipment.ShipmentService;
 import com.example.transaBuddy.domain.user.User;
-
+import com.example.transaBuddy.domain.user.UserRepository;
+import com.example.transaBuddy.domain.user.UserService;
 import com.example.transaBuddy.transabuddy.order.OrderInfo;
 import com.example.transaBuddy.transabuddy.order.OrderRequest;
 import com.example.transaBuddy.transabuddy.order.OrderResponse;
@@ -19,11 +17,9 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.time.LocalDate;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 
 @Service
@@ -42,8 +38,7 @@ public class OrderService {
     @Resource
     private UserRepository userRepository;
 
-    @Resource
-    private LocationRepository locationRepository;
+
 
     @Resource
     private PickUpDropOffRepository pickUpDropOffRepository;
@@ -94,12 +89,17 @@ public class OrderService {
         return orderInfos;
     }
 
-    public List<OrderInfo> findUserOrdersByStatus(Integer userId, String status) {
-        List<OrderInfo> orderInfos = findOrdersByUserId(userId);
-        List<OrderInfo> statusOrderInfos = orderInfos.stream().
-                filter(orderInfo -> orderInfo.getStatus().contains(status)).collect(Collectors.toList());
-        ValidationService.validateStatusOrdersExist(statusOrderInfos, status);
-        return statusOrderInfos;
+    public List<OrderInfo> findAllActiveOrders() {
+        List<Order> orders = orderRepository.findAllActiveOrders("A", "N", "P");
+        return orderMapper.ordersToOrderInfos(orders);
+    }
+
+    public List<OrderInfo> findActiveOrdersByUserId(Integer userId) {
+        List<OrderInfo> orderInfos = findAllActiveOrders();
+        List<OrderInfo> activeOrders = orderInfos.stream().
+                filter(orderInfo -> orderInfo.getSenderUserId().equals(userId)).toList();
+        ValidationService.validateStatusOrdersExist(activeOrders);
+        return activeOrders;
     }
 
     public List<OrderInfo> findAllOrdersByDistrictAndPickUpDropOffType(Integer districtId, String pickUpDropOffType) {
@@ -108,7 +108,7 @@ public class OrderService {
         for (PickUpDropOff pickUpDropOff : pickUpsDropOffs) {
             orders.add(pickUpDropOff.getOrder());
         }
-        List <OrderInfo> orderInfos = orderMapper.ordersToOrderInfos(orders);
+        List<OrderInfo> orderInfos = orderMapper.ordersToOrderInfos(orders);
         for (OrderInfo orderInfo : orderInfos) {
             addLocationsToOrderInfo(orderInfo);
         }
@@ -141,7 +141,7 @@ public class OrderService {
         } else if (pickUpDistrictId < 1 && dropOffDistrictId < 1) {
            orders = orderRepository.findAll();
         }
-        List <OrderInfo> orderInfos = orderMapper.ordersToOrderInfos(orders);
+        List<OrderInfo> orderInfos = orderMapper.ordersToOrderInfos(orders);
         for (OrderInfo orderInfo : orderInfos) {
             addLocationsToOrderInfo(orderInfo);
         }

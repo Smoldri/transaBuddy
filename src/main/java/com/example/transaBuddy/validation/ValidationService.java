@@ -40,10 +40,10 @@ public class ValidationService {
         }
     }
 
-    public static void validateStatusOrdersExist(List<OrderInfo> statusOrderInfos, String status) {
+    public static void validateStatusOrdersExist(List<OrderInfo> statusOrderInfos) {
         if (statusOrderInfos.isEmpty()) {
             throw new DataNotFoundException(ORDERS_WITH_STATUS_NOT_EXISTS,
-            "User does not have orders with status " + status);
+            "User does not have active orders");
         }
     }
 

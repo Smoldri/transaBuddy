@@ -4,7 +4,6 @@ import com.example.transaBuddy.domain.contact.ContactService;
 import com.example.transaBuddy.domain.order.OrderService;
 import com.example.transaBuddy.domain.user.UserService;
 import com.example.transaBuddy.transabuddy.contact.ContactInfo;
-import com.example.transaBuddy.transabuddy.order.AvailableOrders;
 import com.example.transaBuddy.transabuddy.order.OrderInfo;
 import com.example.transaBuddy.transabuddy.order.OrderRequest;
 import com.example.transaBuddy.transabuddy.order.OrderResponse;
@@ -42,10 +41,16 @@ public class TransaBuddyController {
         return transaBuddyService.findOrdersByUserId(userId);
     }
 
+    @GetMapping("/active-orders")
+    @Operation(summary = "Find all active orders")
+    public List<OrderInfo> findAllActiveOrders() {
+        return transaBuddyService.findAllActiveOrders();
+    }
+
     @GetMapping("/user/active-orders")
     @Operation(summary = "Find all active orders by user ID")
-    public List<OrderInfo> findUserOrdersByStatus(Integer userId, String status) {
-        return transaBuddyService.findUserOrdersByStatus(userId, status);
+    public List<OrderInfo> findActiveOrdersByUserId(Integer userId) {
+        return transaBuddyService.findActiveOrdersByUserId(userId);
     }
 
     @PostMapping("/order")
