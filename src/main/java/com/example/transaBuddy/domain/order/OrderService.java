@@ -22,6 +22,7 @@ import java.time.LocalDate;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 
@@ -192,6 +193,14 @@ public class OrderService {
         orderInfo.setPickUpAddress(pickUpLocation.getAddress());
         orderInfo.setDropOffDistrictId(dropOffLocation.getDistrict().getId());
         orderInfo.setDropOffAddress(dropOffLocation.getAddress());
+        return orderInfo;
+    }
+
+    public OrderInfo findOrderByOrderId(Integer orderId) {
+        Optional<Order> order = orderRepository.findById(orderId);
+        ValidationService.validateOrderExists(order, orderId);
+        OrderInfo orderInfo = orderMapper.orderToOrderInfo(order.get());
+        addLocationsToOrderInfo(orderInfo);
         return orderInfo;
     }
 }

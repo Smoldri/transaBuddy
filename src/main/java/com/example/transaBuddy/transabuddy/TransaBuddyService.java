@@ -20,4 +20,8 @@ public class TransaBuddyService {
     public List<OrderInfo> findUserOrdersByStatus(Integer userId, String status) {
         return orderService.findUserOrdersByStatus(userId, status);
     }
+
+    public OrderInfo findOrderByOrderId(Integer orderId) {
+        return orderService.findOrderByOrderId(orderId);
+    }
 }

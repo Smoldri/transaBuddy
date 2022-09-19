@@ -14,6 +14,9 @@ public interface OrderRepository extends JpaRepository<Order, Integer> {
     @Query("select o from Order o where o.deliveryDate >= ?1")
     List<Order> findAllOrdersFromStartDate(LocalDate deliveryDate);
 
+    @Query("select o from Order o where o.id = ?1")
+    Order findOrderByOrderId(Integer id);
+
     @Query("select o from Order o where o.deliveryDate <= ?1")
     List<Order> findAllOrdersToEndDate(LocalDate endDate);
 

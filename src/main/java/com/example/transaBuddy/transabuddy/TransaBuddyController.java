@@ -32,7 +32,7 @@ public class TransaBuddyController {
 
     @GetMapping("/orders/date")
     @Operation(summary = "FInd all orders by dates")
-    public List<OrderInfo> findAllOrderByDates(@DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate, @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endDate ){
+    public List<OrderInfo> findAllOrderByDates(@DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate, @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endDate) {
         return orderService.findAllOrdersByDates(startDate, endDate);
     }
 
@@ -53,12 +53,14 @@ public class TransaBuddyController {
     public OrderResponse addNewOrder(@RequestBody OrderRequest request) {
         return orderService.addNewOrder(request);
     }
+
     @PatchMapping("/user/password")
     @Operation(summary = "Change password")
     public void updateUserPassword(String newPassword, Integer userId) {
         userService.updateUserPassword(newPassword, userId);
 
     }
+
     @PatchMapping("/user/contacts")
     @Operation(summary = "Change contact info")
     public void updateContactInfo(ContactInfo contactInfo) {
@@ -66,37 +68,44 @@ public class TransaBuddyController {
     }
 
     @PatchMapping("/order/delete")
-    @Operation (summary = "Delete order")
-    public void deleteOrder(Integer orderId){
+    @Operation(summary = "Delete order")
+    public void deleteOrder(Integer orderId) {
         orderService.deleteOrder(orderId);
     }
 
     @PatchMapping("/order/accepted")
-    @Operation (summary = "Order delivery accepted by courier")
-    public void acceptOrder(Integer orderId, Integer courierId){
+    @Operation(summary = "Order delivery accepted by courier")
+    public void acceptOrder(Integer orderId, Integer courierId) {
         orderService.acceptOrder(orderId, courierId);
     }
 
     @PatchMapping("/order/rejected")
-    @Operation (summary = "Accepted order rejection by courier")
-    public void rejectOrder(Integer orderId){
+    @Operation(summary = "Accepted order rejection by courier")
+    public void rejectOrder(Integer orderId) {
         orderService.rejectOrder(orderId);
     }
+
     @PatchMapping("/order/pickedup")
-    @Operation (summary = "Order picked up by courier")
-    public void confirmOrderPickUp (Integer orderId){
+    @Operation(summary = "Order picked up by courier")
+    public void confirmOrderPickUp(Integer orderId) {
         orderService.confirmOrderPickUp(orderId);
     }
+
     @PatchMapping("/order/delivery")
-    @Operation (summary = "Order delivered by courier")
-    public void confirmOrderDelivery (Integer orderId){
+    @Operation(summary = "Order delivered by courier")
+    public void confirmOrderDelivery(Integer orderId) {
         orderService.confirmOrderDelivery(orderId);
     }
 
     @GetMapping("/orders/available")
-    @Operation (summary = "find all available orders by district and status")
-        public List<OrderInfo> findOrdersByDistrictStatus(Integer pickUpDistrictId, Integer dropOffDistrictId, String status){
-            return orderService.findOrdersByDistrictAndStatus (pickUpDistrictId, dropOffDistrictId, status);
-        }
+    @Operation(summary = "find all available orders by district and status")
+    public List<OrderInfo> findOrdersByDistrictStatus(Integer pickUpDistrictId, Integer dropOffDistrictId, String status) {
+        return orderService.findOrdersByDistrictAndStatus(pickUpDistrictId, dropOffDistrictId, status);
+    }
 
+    @GetMapping("/order")
+    @Operation(summary = "Find order by order ID")
+    public OrderInfo findOrderByOrderId(Integer orderId) {
+        return transaBuddyService.findOrderByOrderId(orderId);
+    }
 }

@@ -15,7 +15,9 @@ public class ValidationService {
     public static final String USER_NOT_EXISTS = "Sellist kasutajat ei eksisteeri";
     public static final String CATEGORY_EXISTS = "Price type already exists";
     public static final String ORDERS_NOT_EXISTS = "Orders don't exist";
-    public static final String ORDERS_WITH_STATUS_NOT_EXISTS = "Orders with status don't exist";
+    public static final String ORDERS_WITH_STATUS_NOT_EXISTS = "Active orders don't exist";
+
+    public static final String ORDER_NOT_EXISTS = "Order does not exist";
 
     public static void validatePasswordUserExists(List<UserRole> userRoles) {
         if (userRoles.isEmpty()) {
@@ -42,6 +44,12 @@ public class ValidationService {
         if (statusOrderInfos.isEmpty()) {
             throw new DataNotFoundException(ORDERS_WITH_STATUS_NOT_EXISTS,
             "User does not have orders with status " + status);
+        }
+    }
+
+    public static void validateOrderExists(Optional<Order> order, Integer orderId) {
+        if (order.isEmpty()) {
+            throw new DataNotFoundException(ORDER_NOT_EXISTS, "Order with order ID " + orderId + " does not exist");
         }
     }
 }
