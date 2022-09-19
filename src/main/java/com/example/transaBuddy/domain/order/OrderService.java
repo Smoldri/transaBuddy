@@ -129,8 +129,6 @@ public class OrderService {
         }
         return orderInfosByStatus;
     }
-}
-
 
     public void acceptOrder(Integer orderId, Integer courierId) {
         Order order = orderRepository.findById(orderId).get();
@@ -138,7 +136,6 @@ public class OrderService {
         order.setStatus("A"); //ACCEPTED
         orderRepository.save(order);
     }
-
 
     public void rejectOrder(Integer orderId) {
         Order order = orderRepository.findById(orderId).get();
