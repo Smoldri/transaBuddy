@@ -10,7 +10,11 @@ public interface PickUpDropOffRepository extends JpaRepository<PickUpDropOff, In
     List<PickUpDropOff> findByDistrictIdAndType(Integer districtId, String type);
 
     @Query("select p from PickUpDropOff p where p.order.id = ?1 and p.type = ?2")
-    PickUpDropOff findByOrderIdAndType(Integer orderId, String type);
+    PickUpDropOff findByOrderIdAndType(Integer id, String type);
+
+
+
+
 
 
 }
