@@ -75,45 +75,12 @@ public class OrderService {
 //        }
     }
 
-    public void acceptOrder(Integer orderId, Integer courierId) {
-        Order order = orderRepository.findById(orderId).get();
-        order.setCourierUser(userRepository.getUserByUserId(courierId));
-        order.setStatus("A"); //ACCEPTED
-        orderRepository.save(order);
-    }
-
-    public void rejectOrder(Integer orderId) {
-        Order order = orderRepository.findById(orderId).get();
-        order.setCourierUser(null);
-        order.setStatus("N"); // NEW
-        orderRepository.save(order);
-    }
-
     public List<OrderInfo> findUserOrdersByStatus(Integer userId, String status) {
         List<OrderInfo> orderInfos = findOrdersByUserId(userId);
         List<OrderInfo> statusOrderInfos = orderInfos.stream().
                 filter(orderInfo -> orderInfo.getStatus().contains(status)).collect(Collectors.toList());
         ValidationService.validateStatusOrdersExist(statusOrderInfos, status);
         return statusOrderInfos;
-    }
-
-    public void confirmOrderPickUp(Integer orderId) {
-        Order order = orderRepository.findById(orderId).get();
-        order.setStatus("P"); // PICKED UP
-        orderRepository.save(order);
-    }
-
-    public void confirmOrderDelivery(Integer orderId) {
-        Order order = orderRepository.findById(orderId).get();
-        order.setStatus("C"); // COMPLETED
-        orderRepository.save(order);
-    }
-
-    public void deleteOrder(Integer orderId) {
-        Order order = orderRepository.findById(orderId).get();
-        order.setCourierUser(null);
-        order.setStatus("D"); // DELETED
-        orderRepository.save(order);
     }
 
     public List<OrderInfo> findAllOrdersByDistrictAndPickUpDropOffType(Integer districtId, String pickUpDropOffType) {
@@ -161,6 +128,43 @@ public class OrderService {
             }
         }
         return orderInfosByStatus;
+    }
+}
+
+
+    public void acceptOrder(Integer orderId, Integer courierId) {
+        Order order = orderRepository.findById(orderId).get();
+        order.setCourierUser(userRepository.getUserByUserId(courierId));
+        order.setStatus("A"); //ACCEPTED
+        orderRepository.save(order);
+    }
+
+
+    public void rejectOrder(Integer orderId) {
+        Order order = orderRepository.findById(orderId).get();
+        order.setCourierUser(null);
+        order.setStatus("N"); // NEW
+        orderRepository.save(order);
+    }
+
+
+    public void confirmOrderPickUp(Integer orderId) {
+        Order order = orderRepository.findById(orderId).get();
+        order.setStatus("P"); // PICKED UP
+        orderRepository.save(order);
+    }
+
+    public void confirmOrderDelivery(Integer orderId) {
+        Order order = orderRepository.findById(orderId).get();
+        order.setStatus("C"); // COMPLETED
+        orderRepository.save(order);
+    }
+
+    public void deleteOrder(Integer orderId) {
+        Order order = orderRepository.findById(orderId).get();
+        order.setCourierUser(null);
+        order.setStatus("D"); // DELETED
+        orderRepository.save(order);
     }
 }
 
