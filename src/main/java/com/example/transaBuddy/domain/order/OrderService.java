@@ -138,6 +138,8 @@ public class OrderService {
             for (PickUpDropOff dropOff : dropOffs) {
                 orders.add(dropOff.getOrder());
             }
+        } else if (pickUpDistrictId < 1 && dropOffDistrictId < 1) {
+           orders = orderRepository.findAll();
         }
         List <OrderInfo> orderInfos = orderMapper.ordersToOrderInfos(orders);
         for (OrderInfo orderInfo : orderInfos) {

@@ -13,6 +13,7 @@ public class OrderInfo implements Serializable {
     private Integer orderId;
     private Integer senderUserId;
     private Integer courierUserId;
+    private Integer shipmentId;
     private LocalDate deliveryDate;
     private Integer fromHour;
     private Integer toHour;
@@ -24,6 +25,5 @@ public class OrderInfo implements Serializable {
     private String receiverPhoneNumber;
     private String comment;
     private String status;
-    private Integer shipmentId;
 
 }
