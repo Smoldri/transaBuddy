@@ -10,10 +10,5 @@ import java.util.List;
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = "spring")
 public interface PickUpDropOffMapper {
 
-    @Mapping(source = "id", target = "pickUpDropOffId")
-    @Mapping(source = "order.id", target = "orderId")
-    @Mapping(source = "location.id", target = "locationId")
-    PickUpDropOffInfo pickUpDropOffToPickUpDropOffInfo(PickUpDropOff pickUpDropOff);
-
-    List<PickUpDropOffInfo> pickUpDropOffToPickUpDropOffInfo(List<PickUpDropOff> pickUpDropOff);
 }
+

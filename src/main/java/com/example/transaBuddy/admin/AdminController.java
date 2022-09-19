@@ -1,5 +1,9 @@
 package com.example.transaBuddy.admin;
 
+import com.example.transaBuddy.domain.order.OrderService;
+import com.example.transaBuddy.domain.order.pickupdropoff.PickUpDropOffService;
+import com.example.transaBuddy.domain.order.pickupdropoff.location.Location;
+import com.example.transaBuddy.domain.order.pickupdropoff.location.LocationService;
 import com.example.transaBuddy.domain.user.role.Role;
 import com.example.transaBuddy.domain.user.userrole.UserRoleService;
 import com.example.transaBuddy.transabuddy.contact.ContactInfo;
@@ -21,7 +25,16 @@ public class AdminController {
     private AdminService adminService;
 
     @Resource
+    private LocationService locationService;
+
+    @Resource
     private UserRoleService userRoleService;
+
+    @Resource
+    private OrderService orderService;
+
+    @Resource
+    private PickUpDropOffService pickUpDropOffService;
 
     @PatchMapping("/user/status")
     @Operation(summary = "Kliendi või kulleri konto  isActive staatuse muutmine")
@@ -72,11 +85,15 @@ public class AdminController {
         userRoleService.addRoleNewRoleToUser(userResponse, role);
     }
 
-//    @GetMapping ("/orders/district")
-//    @Operation (summary = "Leiab kõik tellimused piirkonna järgi")
-//    public List<OrderInfo> findAllOrdersByDistrict(Integer pickUpDistrictId, Integer dropOffDistrictId){
-//        return orderService.findAllOrdersByDistricts(pickUpDistrictId, dropOffDistrictId);
-//    }
-//
+    @GetMapping ("/orders/district")
+    @Operation (summary = "Find orders by district ids")
+    public List<OrderInfo> findAllOrdersByPickUpOrDropOffDistrict(Integer pickUpDistrictId, Integer dropOffDistrictId){
+        return orderService.findAllOrdersByPickUpAndOrDropOffDistrict(pickUpDistrictId, dropOffDistrictId);
+    }
+    @GetMapping ("/orders/districtandtype")
+    @Operation (summary = "Find orders by district id on type")
+    public List<OrderInfo> findAllOrdersByDistrictAndPickUpDropOffType(Integer districtId, String type){
+        return orderService.findAllOrdersByDistrictAndPickUpDropOffType(districtId, type);
+    }
 
 }

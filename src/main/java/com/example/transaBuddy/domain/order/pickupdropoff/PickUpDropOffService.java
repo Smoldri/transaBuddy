@@ -25,16 +25,17 @@ public class PickUpDropOffService {
     public PickUpDropOff createAndAddPickUp(OrderRequest request, Order order) {
         PickUpDropOff pickUp = new PickUpDropOff();
         pickUp.setOrder(order);
-        pickUp.setLocation(locationService.createAndAddPickUpLocation(request));
+        Location location = locationService.createAndAddLocation(request.getPickUpAddress(), request.getPickUpDistrictId());
+        pickUp.setLocation(location);
         pickUp.setType("P");
         return pickUpDropOffRepository.save(pickUp);
     }
         public PickUpDropOff createAndAddDropOff(OrderRequest request, Order order) {
         PickUpDropOff dropOff = new PickUpDropOff();
         dropOff.setOrder(order);
-        dropOff.setLocation(locationService.createAndAddDropOffLocation(request));
+        Location location = locationService.createAndAddLocation(request.getDropOffAddress(), request.getDropOffDistrictId());
+        dropOff.setLocation(location);
         dropOff.setType("D");
-        pickUpDropOffRepository.save(dropOff);
         return pickUpDropOffRepository.save(dropOff);
     }
 }

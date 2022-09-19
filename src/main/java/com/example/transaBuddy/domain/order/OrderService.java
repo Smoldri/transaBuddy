@@ -1,5 +1,7 @@
 package com.example.transaBuddy.domain.order;
 
+import com.example.transaBuddy.domain.order.pickupdropoff.PickUpDropOff;
+import com.example.transaBuddy.domain.order.pickupdropoff.PickUpDropOffRepository;
 import com.example.transaBuddy.domain.order.pickupdropoff.PickUpDropOffService;
 import com.example.transaBuddy.domain.user.UserRepository;
 import com.example.transaBuddy.domain.user.UserService;
@@ -16,6 +18,7 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import java.time.LocalDate;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -35,6 +38,9 @@ public class OrderService {
 
     @Resource
     private UserRepository userRepository;
+
+    @Resource
+    private PickUpDropOffRepository pickUpDropOffRepository;
 
     public OrderResponse addNewOrder(OrderRequest request) {
         Shipment shipment = shipmentService.createAndAddShipment(request);
@@ -76,7 +82,7 @@ public class OrderService {
         orderRepository.save(order);
     }
 
-    public void rejectOrder (Integer orderId) {
+    public void rejectOrder(Integer orderId) {
         Order order = orderRepository.findById(orderId).get();
         order.setCourierUser(null);
         order.setStatus("N"); // NEW
@@ -90,6 +96,7 @@ public class OrderService {
         ValidationService.validateStatusOrdersExist(statusOrderInfos, status);
         return statusOrderInfos;
     }
+
     public void confirmOrderPickUp(Integer orderId) {
         Order order = orderRepository.findById(orderId).get();
         order.setStatus("P"); // PICKED UP
@@ -107,6 +114,54 @@ public class OrderService {
         order.setCourierUser(null);
         order.setStatus("D"); // DELETED
         orderRepository.save(order);
-        }
     }
+
+    public List<OrderInfo> findAllOrdersByDistrictAndPickUpDropOffType(Integer districtId, String pickUpDropOffType) {
+        List<PickUpDropOff> pickUpsDropOffs = pickUpDropOffRepository.findByDistrictIdAndType(districtId, pickUpDropOffType);
+        List<Order> orders = new ArrayList<>();
+        for (PickUpDropOff pickUpDropOff : pickUpsDropOffs) {
+            orders.add(pickUpDropOff.getOrder());
+        }
+        return orderMapper.ordersToOrderInfos(orders);
+    }
+
+    public List<OrderInfo> findAllOrdersByPickUpAndOrDropOffDistrict(Integer pickUpDistrictId, Integer dropOffDistrictId) {
+        List<Order> orders = new ArrayList<>();
+        if (pickUpDistrictId > 0 && dropOffDistrictId > 0) {
+            List<PickUpDropOff> pickUps = pickUpDropOffRepository.findByDistrictIdAndType(pickUpDistrictId, "P");
+            List<PickUpDropOff> dropOffs = pickUpDropOffRepository.findByDistrictIdAndType(dropOffDistrictId, "D");
+            for (PickUpDropOff pickUp : pickUps) {
+                for (PickUpDropOff dropOff : dropOffs) {
+                    if (dropOff.getOrder().equals(pickUp.getOrder())) {
+                        orders.add(pickUp.getOrder());
+                    }
+                }
+            }
+        } else if (pickUpDistrictId > 0 && dropOffDistrictId < 1 ) {
+            List<PickUpDropOff> pickUps = pickUpDropOffRepository.findByDistrictIdAndType(pickUpDistrictId, "P");
+            for (PickUpDropOff pickUp : pickUps) {
+                orders.add(pickUp.getOrder());
+            }
+            return orderMapper.ordersToOrderInfos(orders);
+        } else if (pickUpDistrictId < 1 && dropOffDistrictId > 0) {
+            List<PickUpDropOff> dropOffs = pickUpDropOffRepository.findByDistrictIdAndType(dropOffDistrictId, "D");
+            for (PickUpDropOff dropOff : dropOffs) {
+                orders.add(dropOff.getOrder());
+            }
+        }
+        return orderMapper.ordersToOrderInfos(orders);
+    }
+
+    public List<OrderInfo> findOrdersByDistrictAndStatus(Integer pickUpDistrictId, Integer dropOffDistrictId, String status) {
+        List<OrderInfo> orderInfos = findAllOrdersByPickUpAndOrDropOffDistrict(pickUpDistrictId, dropOffDistrictId);
+        List<OrderInfo> orderInfosByStatus = new ArrayList<>();
+        for(OrderInfo orderInfo : orderInfos){
+            if (orderInfo.getStatus().equals(status)){
+                orderInfosByStatus.add(orderInfo);
+            }
+        }
+        return orderInfosByStatus;
+    }
+}
+
 

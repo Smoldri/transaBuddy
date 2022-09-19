@@ -14,7 +14,7 @@ public class OrderRequest implements Serializable {
     private LocalDate deliveryDate;
     private Integer fromHour;
     private Integer toHour;
-    private Integer pickUpDistrict;
+    private Integer pickUpDistrictId;
     private String pickUpAddress;
     private Integer dropOffDistrictId;
     private String dropOffAddress;
