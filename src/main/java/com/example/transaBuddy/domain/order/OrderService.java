@@ -3,6 +3,8 @@ package com.example.transaBuddy.domain.order;
 import com.example.transaBuddy.domain.order.pickupdropoff.PickUpDropOff;
 import com.example.transaBuddy.domain.order.pickupdropoff.PickUpDropOffRepository;
 import com.example.transaBuddy.domain.order.pickupdropoff.PickUpDropOffService;
+import com.example.transaBuddy.domain.order.pickupdropoff.location.Location;
+import com.example.transaBuddy.domain.order.pickupdropoff.location.LocationRepository;
 import com.example.transaBuddy.domain.user.UserRepository;
 import com.example.transaBuddy.domain.user.UserService;
 import com.example.transaBuddy.domain.shipment.Shipment;
@@ -40,6 +42,9 @@ public class OrderService {
     private UserRepository userRepository;
 
     @Resource
+    private LocationRepository locationRepository;
+
+    @Resource
     private PickUpDropOffRepository pickUpDropOffRepository;
 
     public OrderResponse addNewOrder(OrderRequest request) {
@@ -56,23 +61,29 @@ public class OrderService {
 
     public List<OrderInfo> getAllOrders() {
         List<Order> orders = orderRepository.findAll();
-        return orderMapper.ordersToOrderInfos(orders);
+        List<OrderInfo> orderInfos = orderMapper.ordersToOrderInfos(orders);
+        for (OrderInfo orderInfo : orderInfos) {
+            addLocationsToOrderInfo(orderInfo);
+        }
+        return orderInfos;
     }
 
     public List<OrderInfo> findOrdersByUserId(Integer userId) {
-        List<Order> orders = orderRepository.findOrdersByUserId(userId, userId);
+        List<Order> orders = orderRepository.findOrdersByUserId(userId);
         ValidationService.validateOrdersExist(orders);
-        return orderMapper.ordersToOrderInfos(orders);
+        List<OrderInfo> orderInfos = orderMapper.ordersToOrderInfos(orders);
+        for (OrderInfo orderInfo : orderInfos) {
+            addLocationsToOrderInfo(orderInfo);
+        }
+        return orderInfos;
     }
 
     public List<OrderInfo> findAllOrdersByDates(LocalDate startDate, LocalDate endDate) {
-//        if (endDate.equals(null)) {
-//            return  orderMapper.ordersToOrderInfos(orderRepository.findAllOrdersFromStartDate(startDate));
-//        } else if (startDate.equals(null)){
-//            return  orderMapper.ordersToOrderInfos(orderRepository.findAllOrdersToEndDate(endDate));
-//        } else {
-        return orderMapper.ordersToOrderInfos(orderRepository.findOrdersByDates(startDate, endDate));
-//        }
+        List<OrderInfo> orderInfos = orderMapper.ordersToOrderInfos(orderRepository.findOrdersByDates(startDate, endDate));
+        for (OrderInfo orderInfo : orderInfos) {
+            addLocationsToOrderInfo(orderInfo);
+        }
+        return orderInfos;
     }
 
     public List<OrderInfo> findUserOrdersByStatus(Integer userId, String status) {
@@ -89,7 +100,11 @@ public class OrderService {
         for (PickUpDropOff pickUpDropOff : pickUpsDropOffs) {
             orders.add(pickUpDropOff.getOrder());
         }
-        return orderMapper.ordersToOrderInfos(orders);
+        List <OrderInfo> orderInfos = orderMapper.ordersToOrderInfos(orders);
+        for (OrderInfo orderInfo : orderInfos) {
+            addLocationsToOrderInfo(orderInfo);
+        }
+        return orderInfos;
     }
 
     public List<OrderInfo> findAllOrdersByPickUpAndOrDropOffDistrict(Integer pickUpDistrictId, Integer dropOffDistrictId) {
@@ -104,7 +119,7 @@ public class OrderService {
                     }
                 }
             }
-        } else if (pickUpDistrictId > 0 && dropOffDistrictId < 1 ) {
+        } else if (pickUpDistrictId > 0 && dropOffDistrictId < 1) {
             List<PickUpDropOff> pickUps = pickUpDropOffRepository.findByDistrictIdAndType(pickUpDistrictId, "P");
             for (PickUpDropOff pickUp : pickUps) {
                 orders.add(pickUp.getOrder());
@@ -116,14 +131,18 @@ public class OrderService {
                 orders.add(dropOff.getOrder());
             }
         }
-        return orderMapper.ordersToOrderInfos(orders);
+        List <OrderInfo> orderInfos = orderMapper.ordersToOrderInfos(orders);
+        for (OrderInfo orderInfo : orderInfos) {
+            addLocationsToOrderInfo(orderInfo);
+        }
+        return orderInfos;
     }
 
     public List<OrderInfo> findOrdersByDistrictAndStatus(Integer pickUpDistrictId, Integer dropOffDistrictId, String status) {
         List<OrderInfo> orderInfos = findAllOrdersByPickUpAndOrDropOffDistrict(pickUpDistrictId, dropOffDistrictId);
         List<OrderInfo> orderInfosByStatus = new ArrayList<>();
-        for(OrderInfo orderInfo : orderInfos){
-            if (orderInfo.getStatus().equals(status)){
+        for (OrderInfo orderInfo : orderInfos) {
+            if (orderInfo.getStatus().equals(status)) {
                 orderInfosByStatus.add(orderInfo);
             }
         }
@@ -162,6 +181,18 @@ public class OrderService {
         order.setCourierUser(null);
         order.setStatus("D"); // DELETED
         orderRepository.save(order);
+    }
+
+    public OrderInfo addLocationsToOrderInfo(OrderInfo orderInfo) {
+        PickUpDropOff pickUp = pickUpDropOffRepository.findByOrderIdAndType(orderInfo.getOrderId(), "P");
+        PickUpDropOff dropOff = pickUpDropOffRepository.findByOrderIdAndType(orderInfo.getOrderId(), "D");
+        Location pickUpLocation = pickUp.getLocation();
+        Location dropOffLocation = dropOff.getLocation();
+        orderInfo.setPickUpDistrictId(pickUpLocation.getDistrict().getId());
+        orderInfo.setPickUpAddress(pickUpLocation.getAddress());
+        orderInfo.setDropOffDistrictId(dropOffLocation.getDistrict().getId());
+        orderInfo.setDropOffAddress(dropOffLocation.getAddress());
+        return orderInfo;
     }
 }
 

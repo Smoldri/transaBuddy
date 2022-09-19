@@ -7,6 +7,10 @@ import java.util.List;
 
 public interface PickUpDropOffRepository extends JpaRepository<PickUpDropOff, Integer> {
     @Query("select p from PickUpDropOff p where p.location.district.id = ?1 and p.type = ?2")
-    List<PickUpDropOff> findByDistrictIdAndType(Integer id, String type);
+    List<PickUpDropOff> findByDistrictIdAndType(Integer districtId, String type);
+
+    @Query("select p from PickUpDropOff p where p.order.id = ?1 and p.type = ?2")
+    PickUpDropOff findByOrderIdAndType(Integer orderId, String type);
+
 
 }
