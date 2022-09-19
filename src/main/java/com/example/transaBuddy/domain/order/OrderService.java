@@ -69,7 +69,7 @@ public class OrderService {
     }
 
     public List<OrderInfo> findOrdersByUserId(Integer userId) {
-        List<Order> orders = orderRepository.findOrdersByUserId(userId);
+        List<Order> orders = orderRepository.findOrdersByUserId(userId, userId);
         ValidationService.validateOrdersExist(orders);
         List<OrderInfo> orderInfos = orderMapper.ordersToOrderInfos(orders);
         for (OrderInfo orderInfo : orderInfos) {
@@ -79,7 +79,14 @@ public class OrderService {
     }
 
     public List<OrderInfo> findAllOrdersByDates(LocalDate startDate, LocalDate endDate) {
-        List<OrderInfo> orderInfos = orderMapper.ordersToOrderInfos(orderRepository.findOrdersByDates(startDate, endDate));
+        boolean existsByDates = orderRepository.existsByDates(startDate, endDate);
+        List<OrderInfo> orderInfos = new ArrayList<>();
+        if (existsByDates) {
+            orderInfos = orderMapper.ordersToOrderInfos(orderRepository.findOrderByStartDateAndEndDate(startDate, endDate));
+        } else {
+            orderInfos = orderMapper.ordersToOrderInfos(orderRepository.findOrderByStartDateOrEndDate(startDate, endDate));
+
+        }
         for (OrderInfo orderInfo : orderInfos) {
             addLocationsToOrderInfo(orderInfo);
         }

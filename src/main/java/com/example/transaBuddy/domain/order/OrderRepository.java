@@ -7,17 +7,18 @@ import java.time.LocalDate;
 import java.util.List;
 
 public interface OrderRepository extends JpaRepository<Order, Integer> {
+    @Query("select (count(o) > 0) from Order o where o.deliveryDate >= ?1 and o.deliveryDate <= ?2")
+    boolean existsByDates(LocalDate startDate, LocalDate endDate);
 
     @Query("select o from Order o where o.deliveryDate >= ?1 and o.deliveryDate <= ?2")
-    List<Order> findOrdersByDates(LocalDate startDate, LocalDate endDate);
-
-    @Query("select o from Order o where o.deliveryDate >= ?1")
-    List<Order> findAllOrdersFromStartDate(LocalDate deliveryDate);
-
-    @Query("select o from Order o where o.deliveryDate <= ?1")
-    List<Order> findAllOrdersToEndDate(LocalDate endDate);
+    List<Order> findOrderByStartDateAndEndDate(LocalDate startDate, LocalDate endDate);
 
     @Query("select o from Order o where o.senderUser.id = ?1 or o.courierUser.id = ?2")
-    List<Order> findOrdersByUserId(Integer userId);
+    List<Order> findOrdersByUserId(Integer id, Integer id1);
+
+    @Query("select o from Order o where o.deliveryDate >= ?1 and o.deliveryDate <= ?2")
+    List<Order> findOrderByStartDateOrEndDate(LocalDate deliveryDate, LocalDate deliveryDate1);
+
+
 
 }
