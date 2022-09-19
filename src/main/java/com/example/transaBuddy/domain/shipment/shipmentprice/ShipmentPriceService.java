@@ -29,7 +29,7 @@ public class ShipmentPriceService {
     public ShipmentPriceResponse addPriceCategory(ShipmentPriceRequest request) {
         ShipmentPrice shipmentPrice = shipmentPriceMapper.shipmentPriceRequestToShipmentPrice(request);
         boolean existsByType = shipmentPriceRepository.existsByType(shipmentPrice.getType());
-        if (existsByType){
+        if (existsByType) {
             ValidationService.validatePriceTypeExists();
         }
         shipmentPriceRepository.save(shipmentPrice);
@@ -38,19 +38,13 @@ public class ShipmentPriceService {
 
 
     public void updatePrice(ShipmentPriceInfo shipmentPriceInfo) {
+
         ShipmentPrice shipmentPrice = shipmentPriceRepository.getReferenceById(shipmentPriceInfo.getShipmentPriceId());
-        if(!shipmentPriceInfo.getPrice().equals(0)){
-            shipmentPrice.setPrice(shipmentPriceInfo.getPrice());
-        }
-        if(!shipmentPriceInfo.getType().equals("")){
-            shipmentPrice.setType(shipmentPriceInfo.getType());
-        }
-        if(!shipmentPriceInfo.getDimensions().equals("")){
-            shipmentPrice.setDimensions(shipmentPriceInfo.getDimensions());
-        }
-        if(!shipmentPriceInfo.getWeight().equals(0)){
-            shipmentPrice.setWeight(shipmentPriceInfo.getWeight());
-        }
+        shipmentPrice.setPrice(shipmentPriceInfo.getPrice());
+        shipmentPrice.setType(shipmentPriceInfo.getType());
+        shipmentPrice.setDimensions(shipmentPriceInfo.getDimensions());
+        shipmentPrice.setWeight(shipmentPriceInfo.getWeight());
+
 
         shipmentPriceRepository.save(shipmentPrice);
     }
