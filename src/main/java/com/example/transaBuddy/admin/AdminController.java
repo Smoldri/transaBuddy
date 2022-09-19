@@ -2,8 +2,6 @@ package com.example.transaBuddy.admin;
 
 import com.example.transaBuddy.domain.order.OrderService;
 import com.example.transaBuddy.domain.order.pickupdropoff.PickUpDropOffService;
-import com.example.transaBuddy.domain.order.pickupdropoff.location.Location;
-import com.example.transaBuddy.domain.order.pickupdropoff.location.LocationService;
 import com.example.transaBuddy.domain.user.role.Role;
 import com.example.transaBuddy.domain.user.userrole.UserRoleService;
 import com.example.transaBuddy.transabuddy.contact.ContactInfo;
@@ -25,16 +23,10 @@ public class AdminController {
     private AdminService adminService;
 
     @Resource
-    private LocationService locationService;
-
-    @Resource
     private UserRoleService userRoleService;
 
     @Resource
     private OrderService orderService;
-
-    @Resource
-    private PickUpDropOffService pickUpDropOffService;
 
     @PatchMapping("/user/status")
     @Operation(summary = "Kliendi või kulleri konto  isActive staatuse muutmine")
