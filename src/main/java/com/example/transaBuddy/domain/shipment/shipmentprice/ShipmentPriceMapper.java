@@ -13,8 +13,8 @@ import java.util.List;
 public interface ShipmentPriceMapper {
 
 
-    @Mapping(source = "id", target = "id")
-    ShipmentPrice shipmentPriceToShipmentPriceInfo(ShipmentPrice shipmentPrice);
+    @Mapping(source = "id", target = "shipmentPriceId")
+    ShipmentPriceInfo shipmentPriceToShipmentPriceInfo(ShipmentPrice shipmentPrice);
     List<ShipmentPriceInfo> shipmentPricesToShipmentPriceInfos(List<ShipmentPrice> shipmentPrices);
 
     ShipmentPrice shipmentPriceRequestToShipmentPrice(ShipmentPriceRequest request);

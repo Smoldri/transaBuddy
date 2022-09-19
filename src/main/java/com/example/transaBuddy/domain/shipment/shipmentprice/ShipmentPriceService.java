@@ -29,7 +29,7 @@ public class ShipmentPriceService {
     public ShipmentPriceResponse addPriceCategory(ShipmentPriceRequest request) {
         ShipmentPrice shipmentPrice = shipmentPriceMapper.shipmentPriceRequestToShipmentPrice(request);
         boolean existsByType = shipmentPriceRepository.existsByType(shipmentPrice.getType());
-        if (existsByType){
+        if (existsByType) {
             ValidationService.validatePriceTypeExists();
         }
         shipmentPriceRepository.save(shipmentPrice);
@@ -38,11 +38,14 @@ public class ShipmentPriceService {
 
 
     public void updatePrice(ShipmentPriceInfo shipmentPriceInfo) {
+
         ShipmentPrice shipmentPrice = shipmentPriceRepository.getReferenceById(shipmentPriceInfo.getShipmentPriceId());
         shipmentPrice.setPrice(shipmentPriceInfo.getPrice());
         shipmentPrice.setType(shipmentPriceInfo.getType());
         shipmentPrice.setDimensions(shipmentPriceInfo.getDimensions());
         shipmentPrice.setWeight(shipmentPriceInfo.getWeight());
+
+
         shipmentPriceRepository.save(shipmentPrice);
     }
 }
