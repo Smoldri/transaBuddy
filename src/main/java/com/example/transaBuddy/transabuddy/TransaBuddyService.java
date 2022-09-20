@@ -17,8 +17,11 @@ public class TransaBuddyService {
         return orderService.findOrdersByUserId(userId);
     }
 
-    public List<OrderInfo> findActiveOrdersByUserId(Integer userId) {
-        return orderService.findActiveOrdersByUserId(userId);
+    public List<OrderInfo> findActiveOrdersBySenderUserId(Integer userId) {
+        return orderService.findAllActiveOrdersBySenderUserId(userId);
+    }
+    public List<OrderInfo> findActiveOrdersByCourierUserId(Integer userId) {
+        return orderService.findAllActiveOrdersByCourierUserId(userId);
     }
 
     public OrderInfo findOrderByOrderId(Integer orderId) {
@@ -26,6 +29,6 @@ public class TransaBuddyService {
     }
 
     public List<OrderInfo> findAllActiveOrders() {
-        return orderService.findAllActiveOrders();
+        return orderService.findAllSenderActiveOrders();
     }
 }
