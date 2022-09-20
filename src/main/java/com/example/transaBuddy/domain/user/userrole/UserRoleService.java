@@ -60,5 +60,9 @@ public class UserRoleService {
         User user = userMapper.userResponseToUser(userResponse);
         addRoleToUser(user, role);
     }
+
+    public List<UserRole> getUserRolesByUserId(Integer userId) {
+        return userRoleRepository.findUserRolesByUserId(userId);
+    }
 }
 
