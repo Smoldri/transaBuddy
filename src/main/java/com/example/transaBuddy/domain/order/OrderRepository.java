@@ -20,7 +20,7 @@ public interface OrderRepository extends JpaRepository<Order, Integer> {
     List<Order> findOrderByStartDateOrEndDate(LocalDate deliveryDate, LocalDate deliveryDate1);
 
     @Query("select o from Order o where o.status = ?1 or o.status = ?2 or o.status = ?3 order by o.deliveryDate DESC")
-    List<Order> findAllCustomerActiveOrders(String status, String status1, String status2);
+    List<Order> findAllActiveOrders(String status, String status1, String status2);
 
     @Query("select o from Order o where o.status = ?1 or o.status = ?2 order by o.status")
     List<Order> findAllCourierActiveOrders(String status, String status1);

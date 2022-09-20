@@ -25,6 +25,8 @@ public class OrderInfo implements Serializable {
     private String dropOffAddress;
     private String receiverName;
     private String receiverPhoneNumber;
+    private Integer packageAmount;
+    private String shipmentDescription;
     private String priceCategory;
     private String comment;
     private String status;

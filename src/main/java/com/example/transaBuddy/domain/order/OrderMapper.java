@@ -24,6 +24,8 @@ public interface OrderMapper {
     @Mapping(source = "senderUser.contact", target = "senderName", qualifiedByName = "senderFullName")
     @Mapping(source = "senderUser.contact.phoneNumber", target = "senderPhoneNumber")
     @Mapping(source = "shipment.shipmentPrice.type", target = "priceCategory")
+    @Mapping(source = "shipment.amount", target = "packageAmount")
+    @Mapping(source = "shipment.description", target = "shipmentDescription")
     OrderInfo orderToOrderInfo(Order order);
 
     @Named("senderFullName")

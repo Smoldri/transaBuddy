@@ -88,18 +88,20 @@ public class OrderService {
         return orderInfos;
     }
 
-    public List<OrderInfo> findAllCustomerActiveOrders() {
-        List<Order> orders = orderRepository.findAllCustomerActiveOrders("A", "N", "P");
+    public List<OrderInfo> findAllActiveOrders() {
+        List<Order> orders = orderRepository.findAllActiveOrders("A", "N", "P");
         return orderMapper.ordersToOrderInfos(orders);
     }
-
     public List<OrderInfo> findAllCourierActiveOrders() {
         List<Order> orders = orderRepository.findAllCourierActiveOrders("A", "P");
         return orderMapper.ordersToOrderInfos(orders);
     }
 
     public List<OrderInfo> findActiveOrdersByUserId(Integer userId) {
-        List<OrderInfo> orderInfos = findAllCustomerActiveOrders();
+        List<OrderInfo> orderInfos = findOrdersByUserId(userId);
+        for (OrderInfo orderInfo : orderInfos){
+
+        }
         List<OrderInfo> activeOrders = orderInfos.stream().
                 filter(orderInfo -> orderInfo.getSenderUserId().equals(userId)).toList();
         ValidationService.validateStatusOrdersExist(activeOrders);
