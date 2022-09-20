@@ -15,8 +15,7 @@ public class OrderInfo implements Serializable {
     private Integer courierUserId;
     private Integer shipmentId;
     private LocalDate deliveryDate;
-    private Integer fromHour;
-    private Integer toHour;
+    private String timeFrame;
     private String senderName;
     private String senderPhoneNumber;
     private Integer pickUpDistrictId;

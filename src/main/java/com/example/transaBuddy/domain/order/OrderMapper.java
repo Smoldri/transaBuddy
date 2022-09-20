@@ -26,11 +26,16 @@ public interface OrderMapper {
     @Mapping(source = "shipment.shipmentPrice.type", target = "priceCategory")
     @Mapping(source = "shipment.amount", target = "packageAmount")
     @Mapping(source = "shipment.description", target = "shipmentDescription")
+    @Mapping(source = "order", target = "timeFrame", qualifiedByName = "timeFrame")
     OrderInfo orderToOrderInfo(Order order);
 
     @Named("senderFullName")
     static String senderFullName(Contact contact) {
         return contact.getFirstName() + " " + contact.getLastName();
+    }
+    @Named("timeFrame")
+    static String timeFrame (Order order) {
+        return String.valueOf(order. getFromHour()) + ":00 - " + String.valueOf(order.getToHour()) + ":00 ";
     }
 
     List<OrderInfo> ordersToOrderInfos(List<Order> orders);
