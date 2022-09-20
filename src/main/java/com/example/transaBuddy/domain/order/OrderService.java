@@ -39,7 +39,6 @@ public class OrderService {
     private UserRepository userRepository;
 
 
-
     @Resource
     private PickUpDropOffRepository pickUpDropOffRepository;
 
@@ -89,13 +88,18 @@ public class OrderService {
         return orderInfos;
     }
 
-    public List<OrderInfo> findAllActiveOrders() {
-        List<Order> orders = orderRepository.findAllActiveOrders("A", "N", "P");
+    public List<OrderInfo> findAllCustomerActiveOrders() {
+        List<Order> orders = orderRepository.findAllCustomerActiveOrders("A", "N", "P");
+        return orderMapper.ordersToOrderInfos(orders);
+    }
+
+    public List<OrderInfo> findAllCourierActiveOrders() {
+        List<Order> orders = orderRepository.findAllCourierActiveOrders("A", "P");
         return orderMapper.ordersToOrderInfos(orders);
     }
 
     public List<OrderInfo> findActiveOrdersByUserId(Integer userId) {
-        List<OrderInfo> orderInfos = findAllActiveOrders();
+        List<OrderInfo> orderInfos = findAllCustomerActiveOrders();
         List<OrderInfo> activeOrders = orderInfos.stream().
                 filter(orderInfo -> orderInfo.getSenderUserId().equals(userId)).toList();
         ValidationService.validateStatusOrdersExist(activeOrders);
@@ -139,7 +143,7 @@ public class OrderService {
                 orders.add(dropOff.getOrder());
             }
         } else if (pickUpDistrictId < 1 && dropOffDistrictId < 1) {
-           orders = orderRepository.findAll();
+            orders = orderRepository.findAll();
         }
         List<OrderInfo> orderInfos = orderMapper.ordersToOrderInfos(orders);
         for (OrderInfo orderInfo : orderInfos) {

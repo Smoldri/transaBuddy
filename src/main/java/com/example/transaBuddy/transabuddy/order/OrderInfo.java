@@ -17,12 +17,15 @@ public class OrderInfo implements Serializable {
     private LocalDate deliveryDate;
     private Integer fromHour;
     private Integer toHour;
+    private String senderName;
+    private String senderPhoneNumber;
     private Integer pickUpDistrictId;
     private String pickUpAddress;
     private Integer dropOffDistrictId;
     private String dropOffAddress;
     private String receiverName;
     private String receiverPhoneNumber;
+    private String priceCategory;
     private String comment;
     private String status;
 

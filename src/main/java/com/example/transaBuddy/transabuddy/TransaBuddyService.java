@@ -26,6 +26,6 @@ public class TransaBuddyService {
     }
 
     public List<OrderInfo> findAllActiveOrders() {
-        return orderService.findAllActiveOrders();
+        return orderService.findAllCustomerActiveOrders();
     }
 }

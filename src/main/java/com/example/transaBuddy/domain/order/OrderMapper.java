@@ -1,11 +1,13 @@
 package com.example.transaBuddy.domain.order;
 
+import com.example.transaBuddy.domain.contact.Contact;
 import com.example.transaBuddy.domain.order.pickupdropoff.PickUpDropOffRepository;
 import com.example.transaBuddy.transabuddy.order.OrderInfo;
 import com.example.transaBuddy.transabuddy.order.OrderRequest;
 import com.example.transaBuddy.transabuddy.order.OrderResponse;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.Named;
 import org.mapstruct.ReportingPolicy;
 
 import javax.annotation.Resource;
@@ -19,7 +21,15 @@ public interface OrderMapper {
     @Mapping(source = "senderUser.id", target = "senderUserId")
     @Mapping(source = "courierUser.id", target = "courierUserId")
     @Mapping(source = "shipment.id", target = "shipmentId")
+    @Mapping(source = "senderUser.contact", target = "senderName", qualifiedByName = "senderFullName")
+    @Mapping(source = "senderUser.contact.phoneNumber", target = "senderPhoneNumber")
+    @Mapping(source = "shipment.shipmentPrice.type", target = "priceCategory")
     OrderInfo orderToOrderInfo(Order order);
+
+    @Named("senderFullName")
+    static String senderFullName(Contact contact) {
+        return contact.getFirstName() + " " + contact.getLastName();
+    }
 
     List<OrderInfo> ordersToOrderInfos(List<Order> orders);
 
