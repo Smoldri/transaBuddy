@@ -53,7 +53,7 @@ public class TransaBuddyController {
         return transaBuddyService.findActiveOrdersBySenderUserId(userId);
     }
     @GetMapping("/user/courier-active-orders")
-    @Operation(summary = "Find all active orders by sender user ID")
+    @Operation(summary = "Find all active orders by courier user ID")
     public List<OrderInfo> findActiveOrdersByCourierUserId(Integer userId) {
         return transaBuddyService.findActiveOrdersByCourierUserId(userId);
     }

@@ -103,6 +103,7 @@ public class OrderService {
         List<OrderInfo> activeOrders = new ArrayList<>();
         for (OrderInfo orderInfo : orderInfos) {
             if (courierUserId.equals(orderInfo.getCourierUserId())) {
+                addLocationsToOrderInfo(orderInfo);
                 activeOrders.add(orderInfo);
             }
         }
@@ -115,7 +116,9 @@ public class OrderService {
         List<OrderInfo> activeOrders = new ArrayList<>();
         for (OrderInfo orderInfo : orderInfos) {
             if (senderUserId.equals(orderInfo.getSenderUserId())) {
+                addLocationsToOrderInfo(orderInfo);
                 activeOrders.add(orderInfo);
+
             }
         }
         ValidationService.validateStatusOrdersExist(activeOrders);
