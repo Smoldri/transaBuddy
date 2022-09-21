@@ -39,4 +39,12 @@ public class TransaBuddyService {
     public List<OrderInfo> findCompletedOrdersByCourierUserId(Integer courierUserId) {
         return orderService.findCompletedOrdersByCourierUserId(courierUserId);
     }
+
+    public List<OrderInfo> findSenderOrdersByUserId(Integer userId) {
+        return orderService.findSenderOrdersByUserId(userId);
+    }
+
+    public List<OrderInfo> findSenderOrdersByStatus(Integer userId, String status) {
+        return orderService.findSenderOrdersByStatus(userId,status);
+    }
 }

@@ -41,6 +41,12 @@ public class TransaBuddyController {
         return transaBuddyService.findOrdersByUserId(userId);
     }
 
+    @GetMapping("/user/sender/orders")
+    @Operation(summary = "Find all orders by sender")
+    public  List<OrderInfo> findSenderOrdersByUserId(Integer userId) {
+        return transaBuddyService.findSenderOrdersByUserId(userId);
+    }
+
     @GetMapping("/active-orders")
     @Operation(summary = "Find all active orders")
     public List<OrderInfo> findAllActiveOrders() {
@@ -122,5 +128,11 @@ public class TransaBuddyController {
     @Operation(summary = "find all completed orders by courier user id")
     public List<OrderInfo> findCompletedOrdersByCourierUserId(Integer courierUserId) {
         return transaBuddyService.findCompletedOrdersByCourierUserId(courierUserId);
+    }
+
+    @GetMapping("/user/sender/all-orders")
+    @Operation(summary = "Find sender orders by status")
+    public List<OrderInfo> findSenderOrdersByStatus (Integer userId, String status) {
+        return transaBuddyService.findSenderOrdersByStatus(userId, status);
     }
 }

@@ -1,7 +1,6 @@
 package com.example.transaBuddy.domain.order;
 
 import com.example.transaBuddy.domain.contact.Contact;
-import com.example.transaBuddy.domain.order.pickupdropoff.PickUpDropOffRepository;
 import com.example.transaBuddy.transabuddy.order.OrderInfo;
 import com.example.transaBuddy.transabuddy.order.OrderRequest;
 import com.example.transaBuddy.transabuddy.order.OrderResponse;
@@ -10,7 +9,6 @@ import org.mapstruct.Mapping;
 import org.mapstruct.Named;
 import org.mapstruct.ReportingPolicy;
 
-import javax.annotation.Resource;
 import java.util.List;
 
 
