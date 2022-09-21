@@ -125,6 +125,15 @@ public class OrderService {
         return activeOrders;
     }
 
+    public List<OrderInfo>findCompletedOrdersByCourierUserId(Integer courierUserId){
+        List<Order> orders = orderRepository.findOrdersByUserIdAndStatus(courierUserId, "C");
+        List<OrderInfo> orderInfos = orderMapper.ordersToOrderInfos(orders);
+        for (OrderInfo orderInfo : orderInfos) {
+            addLocationsToOrderInfo(orderInfo);
+        }
+       return orderInfos;
+    }
+
 
 //        public List<OrderInfo> findAllOrdersByDistrictAndPickUpDropOffType (Integer districtId, String pickUpDropOffType){
 //            List<PickUpDropOff> pickUpsDropOffs = pickUpDropOffRepository.findByDistrictIdAndType(districtId, pickUpDropOffType);
@@ -230,7 +239,6 @@ public class OrderService {
         orderInfo.setDropOffAddress(dropOffLocation.getAddress());
         return orderInfo;
     }
-
     public OrderInfo findOrderByOrderId(Integer orderId) {
         Optional<Order> order = orderRepository.findById(orderId);
         ValidationService.validateOrderExists(order, orderId);

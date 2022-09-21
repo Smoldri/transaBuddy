@@ -13,7 +13,7 @@ public interface OrderRepository extends JpaRepository<Order, Integer> {
     @Query("select o from Order o where o.deliveryDate >= ?1 and o.deliveryDate <= ?2 order by o.deliveryDate DESC")
     List<Order> findOrderByStartDateAndEndDate(LocalDate deliveryDate, LocalDate deliveryDate1);
 
-    @Query("select o from Order o where o.senderUser.id = ?1 and o.courierUser.id = ?2 order by o.deliveryDate DESC")
+    @Query("select o from Order o where o.senderUser.id = ?1 or o.courierUser.id = ?2 order by o.deliveryDate DESC")
     List<Order> findOrdersByUserId(Integer senderUserId, Integer courierUserId);
 
     @Query("select o from Order o where o.deliveryDate >= ?1 or o.deliveryDate <= ?2 order by o.deliveryDate DESC")
@@ -24,9 +24,10 @@ public interface OrderRepository extends JpaRepository<Order, Integer> {
 
     @Query("select o from Order o where o.status = ?1 or o.status = ?2 order by o.status")
     List<Order> findAllCourierActiveOrders(String status, String status1);
-    
-    
+
+    @Query("select o from Order o where o.courierUser.id = ?1 and o.status = ?2 order by o.deliveryDate")
+    List<Order> findOrdersByUserIdAndStatus(Integer id, String status);
 
 
-   
+
 }

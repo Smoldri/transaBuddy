@@ -110,12 +110,17 @@ public class TransaBuddyController {
     @GetMapping("/orders/available")
     @Operation(summary = "find all available orders by district and status")
     public List<OrderInfo> findOrdersByDistrictStatus(Integer pickUpDistrictId, Integer dropOffDistrictId, String status) {
-        return orderService.findOrdersByDistrictAndStatus(pickUpDistrictId, dropOffDistrictId, status);
+        return transaBuddyService.findOrdersByDistrictAndStatus(pickUpDistrictId, dropOffDistrictId, status);
     }
 
     @GetMapping("/order")
     @Operation(summary = "Find order by order ID")
     public OrderInfo findOrderByOrderId(Integer orderId) {
         return transaBuddyService.findOrderByOrderId(orderId);
+    }
+    @GetMapping("/orders/courier-completed-orders")
+    @Operation(summary = "find all completed orders by courier user id")
+    public List<OrderInfo> findCompletedOrdersByCourierUserId(Integer courierUserId) {
+        return transaBuddyService.findCompletedOrdersByCourierUserId(courierUserId);
     }
 }
