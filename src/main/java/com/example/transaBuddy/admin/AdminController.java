@@ -81,6 +81,12 @@ public class AdminController {
     public List<OrderInfo> findAllOrdersByPickUpOrDropOffDistrict(Integer pickUpDistrictId, Integer dropOffDistrictId){
         return orderService.findAllOrdersByPickUpAndOrDropOffDistrict(pickUpDistrictId, dropOffDistrictId);
     }
+
+    @GetMapping("user/contacts")
+    @Operation(summary = "Find user info by user id")
+    public ContactInfo getUserInfoByUserId(Integer userId){
+        return adminService.getUserInfoByUserId(userId);
+    }
 //    @GetMapping ("/orders/districtandtype")
 //    @Operation (summary = "Find orders by district id on type")
 //    public List<OrderInfo> findAllOrdersByDistrictAndPickUpDropOffType(Integer districtId, String type){
