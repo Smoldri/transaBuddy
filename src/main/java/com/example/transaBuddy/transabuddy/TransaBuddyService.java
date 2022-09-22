@@ -38,4 +38,8 @@ public class TransaBuddyService {
     public List<OrderInfo> findCompletedOrdersByCourierUserId(Integer courierUserId) {
         return orderService.findCompletedOrdersByCourierUserId(courierUserId);
     }
+
+    public OrderInfo updateOrder(OrderInfo orderInfo, Integer fromHour, Integer toHour) {
+        return orderService.updateOrder(orderInfo, fromHour, toHour);
+    }
 }

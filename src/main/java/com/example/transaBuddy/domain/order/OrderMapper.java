@@ -29,13 +29,23 @@ public interface OrderMapper {
     @Mapping(source = "order", target = "timeFrame", qualifiedByName = "timeFrame")
     OrderInfo orderToOrderInfo(Order order);
 
+
     @Named("senderFullName")
     static String senderFullName(Contact contact) {
         return contact.getFirstName() + " " + contact.getLastName();
     }
+
     @Named("timeFrame")
-    static String timeFrame (Order order) {
-        return String.valueOf(order. getFromHour()) + ":00 - " + String.valueOf(order.getToHour()) + ":00 ";
+    static String timeFrame(Order order) {
+         if (order.getFromHour() < 10 && order.getToHour() < 10) {
+            return  "0" + String.valueOf(order.getFromHour()) + ":00 - " + "0" + String.valueOf(order.getToHour()) + ":00";
+        } else if (order.getFromHour() < 10) {
+            return "0" + String.valueOf(order.getFromHour()) + ":00 - " + String.valueOf(order.getToHour()) + ":00";
+        } else if (order.getToHour() < 10) {
+            return String.valueOf(order.getFromHour()) + ":00 - " + "0" + String.valueOf(order.getToHour()) + ":00";
+        } else {
+             return String.valueOf(order.getFromHour()) + ":00 - " + String.valueOf(order.getToHour()) + ":00";
+        }
     }
 
     List<OrderInfo> ordersToOrderInfos(List<Order> orders);

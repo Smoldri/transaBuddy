@@ -122,4 +122,10 @@ public class TransaBuddyController {
     public List<OrderInfo> findCompletedOrdersByCourierUserId(Integer courierUserId) {
         return transaBuddyService.findCompletedOrdersByCourierUserId(courierUserId);
     }
+
+    @PatchMapping("/order/update")
+    @Operation(summary = "Update order information")
+    public OrderInfo updateOrder (@RequestBody OrderInfo orderInfo, @RequestParam ("fromHour") Integer fromHour, @RequestParam ("toHour") Integer toHour){
+        return transaBuddyService.updateOrder(orderInfo, fromHour, toHour);
+    }
 }

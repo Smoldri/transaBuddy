@@ -4,8 +4,11 @@ import com.example.transaBuddy.domain.order.pickupdropoff.PickUpDropOff;
 import com.example.transaBuddy.domain.order.pickupdropoff.PickUpDropOffRepository;
 import com.example.transaBuddy.domain.order.pickupdropoff.PickUpDropOffService;
 import com.example.transaBuddy.domain.order.pickupdropoff.location.Location;
+import com.example.transaBuddy.domain.order.pickupdropoff.location.LocationService;
 import com.example.transaBuddy.domain.shipment.Shipment;
+import com.example.transaBuddy.domain.shipment.ShipmentRepository;
 import com.example.transaBuddy.domain.shipment.ShipmentService;
+import com.example.transaBuddy.domain.shipment.shipmentprice.ShipmentPriceRepository;
 import com.example.transaBuddy.domain.user.User;
 import com.example.transaBuddy.domain.user.UserRepository;
 import com.example.transaBuddy.domain.user.UserService;
@@ -24,8 +27,13 @@ import java.util.Optional;
 
 @Service
 public class OrderService {
+
+    @Resource
+    ShipmentPriceRepository shipmentPriceRepository;
     @Resource
     private OrderRepository orderRepository;
+    @Resource
+    private ShipmentRepository shipmentRepository;
     @Resource
     private ShipmentService shipmentService;
     @Resource
@@ -37,6 +45,9 @@ public class OrderService {
 
     @Resource
     private UserRepository userRepository;
+
+    @Resource
+    private LocationService locationService;
 
 
     @Resource
@@ -245,6 +256,36 @@ public class OrderService {
         OrderInfo orderInfo = orderMapper.orderToOrderInfo(order.get());
         addLocationsToOrderInfo(orderInfo);
         return orderInfo;
+    }
+
+    public OrderInfo updateOrder(OrderInfo orderInfo, Integer fromHour, Integer toHour) {
+        Order order = orderRepository.findById(orderInfo.getOrderId()).get();
+        order.setReceiverName(orderInfo.getReceiverName());
+        order.setReceiverPhoneNumber(order.getReceiverPhoneNumber());
+        order.setDeliveryDate(order.getDeliveryDate());
+        order.setFromHour(fromHour);
+        order.setToHour(toHour);
+        order.setComment(orderInfo.getComment());
+        order.setStatus("N");
+        order.setCourierUser(null);
+        Shipment shipment = shipmentRepository.findById(order.getShipment().getId()).get();
+        shipment.setAmount(orderInfo.getPackageAmount());
+        shipment.setDescription(orderInfo.getShipmentDescription());
+        shipment.setShipmentPrice(shipmentPriceRepository.findByPriceType(orderInfo.getPriceCategory()));
+        shipmentRepository.save(shipment);
+        Location pickUpLocation = locationService.createAndAddLocation(orderInfo.getPickUpAddress(), orderInfo.getPickUpDistrictId());
+        Location dropOffLocation = locationService.createAndAddLocation(orderInfo.getDropOffAddress(), orderInfo.getDropOffDistrictId());
+        PickUpDropOff pickUp = pickUpDropOffRepository.findByOrderIdAndType(order.getId(), "P");
+        PickUpDropOff dropOff = pickUpDropOffRepository.findByOrderIdAndType(order.getId(), "D");
+        pickUp.setLocation(pickUpLocation);
+        pickUpDropOffRepository.save(pickUp);
+        pickUpDropOffRepository.save(dropOff);
+        dropOff.setLocation(dropOffLocation);
+        orderRepository.save(order);
+        OrderInfo updatedOrderInfo = orderMapper.orderToOrderInfo(order);
+        addLocationsToOrderInfo(updatedOrderInfo);
+
+        return updatedOrderInfo;
     }
 }
 
