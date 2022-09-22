@@ -42,4 +42,12 @@ public class TransaBuddyService {
     public OrderInfo updateOrder(OrderInfo orderInfo, Integer fromHour, Integer toHour) {
         return orderService.updateOrder(orderInfo, fromHour, toHour);
     }
+
+    public List<OrderInfo> findSenderOrdersByUserId(Integer userId) {
+        return orderService.findSenderOrdersByUserId(userId);
+    }
+
+    public List<OrderInfo> findSenderOrdersByStatus(Integer userId, String status) {
+        return orderService.findSenderOrdersByStatus(userId,status);
+    }
 }

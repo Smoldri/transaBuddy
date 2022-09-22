@@ -136,13 +136,13 @@ public class OrderService {
         return activeOrders;
     }
 
-    public List<OrderInfo>findCompletedOrdersByCourierUserId(Integer courierUserId){
+    public List<OrderInfo> findCompletedOrdersByCourierUserId(Integer courierUserId) {
         List<Order> orders = orderRepository.findOrdersByUserIdAndStatus(courierUserId, "C");
         List<OrderInfo> orderInfos = orderMapper.ordersToOrderInfos(orders);
         for (OrderInfo orderInfo : orderInfos) {
             addLocationsToOrderInfo(orderInfo);
         }
-       return orderInfos;
+        return orderInfos;
     }
 
 
@@ -250,6 +250,7 @@ public class OrderService {
         orderInfo.setDropOffAddress(dropOffLocation.getAddress());
         return orderInfo;
     }
+
     public OrderInfo findOrderByOrderId(Integer orderId) {
         Optional<Order> order = orderRepository.findById(orderId);
         ValidationService.validateOrderExists(order, orderId);
@@ -286,6 +287,30 @@ public class OrderService {
         addLocationsToOrderInfo(updatedOrderInfo);
 
         return updatedOrderInfo;
+    }
+
+    public List<OrderInfo> findSenderOrdersByUserId(Integer userId) {
+        List<Order> orders = orderRepository.findSenderOrdersByUserId(userId);
+        ValidationService.validateOrdersExist(orders);
+        List<OrderInfo> orderInfos = orderMapper.ordersToOrderInfos(orders);
+        for (OrderInfo orderInfo : orderInfos) {
+            addLocationsToOrderInfo(orderInfo);
+        }
+        return orderInfos;
+    }
+
+    public List<OrderInfo> findSenderOrdersByStatus(Integer userId, String status) {
+        List<OrderInfo> orderInfos = findSenderOrdersByUserId(userId);
+        if (status.equals(" ")) {
+            return orderInfos;
+        }
+        List<OrderInfo> orderInfosByStatus = new ArrayList<>();
+        for (OrderInfo orderInfo : orderInfos) {
+            if (orderInfo.getStatus().equals(status)) {
+                orderInfosByStatus.add(orderInfo);
+            }
+        }
+        return orderInfosByStatus;
     }
 }
 
