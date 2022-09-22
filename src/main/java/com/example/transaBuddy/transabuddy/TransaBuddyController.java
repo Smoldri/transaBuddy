@@ -68,7 +68,6 @@ public class TransaBuddyController {
     @Operation(summary = "Change password")
     public void updateUserPassword(String newPassword, Integer userId) {
         userService.updateUserPassword(newPassword, userId);
-
     }
 
     @PatchMapping("/user/contacts")

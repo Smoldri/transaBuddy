@@ -35,7 +35,6 @@ public class TransaBuddyService {
     public List<OrderInfo> findOrdersByDistrictAndStatus(Integer pickUpDistrictId, Integer dropOffDistrictId, String status) {
         return orderService.findOrdersByDistrictAndStatus(pickUpDistrictId, dropOffDistrictId, status);
     }
-
     public List<OrderInfo> findCompletedOrdersByCourierUserId(Integer courierUserId) {
         return orderService.findCompletedOrdersByCourierUserId(courierUserId);
     }
