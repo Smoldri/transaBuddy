@@ -1,12 +1,11 @@
 package com.example.transaBuddy.domain.user;
 
-import com.example.transaBuddy.domain.contact.ContactRepository;
+
 import com.example.transaBuddy.domain.user.userrole.UserRoleService;
 import com.example.transaBuddy.domain.contact.Contact;
 import com.example.transaBuddy.transabuddy.contact.ContactInfo;
 import com.example.transaBuddy.transabuddy.order.OrderInfo;
 import com.example.transaBuddy.transabuddy.user.UserRequest;
-import com.example.transaBuddy.transabuddy.user.UserResponse;
 import com.example.transaBuddy.validation.ValidationService;
 import org.springframework.stereotype.Service;
 
@@ -25,9 +24,6 @@ public class UserService {
 
     @Resource
     private UserRoleService userRoleService;
-    @Resource
-    private ContactRepository contactRepository;
-
 
     public User createAndAddUser(UserRequest request, Contact contact) {
         User user = userMapper.userRequestToUser(request);

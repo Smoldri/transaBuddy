@@ -114,8 +114,8 @@ public class TransaBuddyController {
 
     @GetMapping("/orders/available")
     @Operation(summary = "find all available orders by district and status")
-    public List<OrderInfo> findOrdersByDistrictStatus(Integer pickUpDistrictId, Integer dropOffDistrictId, String status) {
-        return transaBuddyService.findOrdersByDistrictAndStatus(pickUpDistrictId, dropOffDistrictId, status);
+    public List<OrderInfo> findOrdersByDistrictStatus(Integer pickUpDistrictId, Integer dropOffDistrictId) {
+        return transaBuddyService.findOrdersByDistrictAndStatus(pickUpDistrictId, dropOffDistrictId);
     }
 
     @GetMapping("/order")

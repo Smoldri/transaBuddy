@@ -193,14 +193,18 @@ public class OrderService {
         return orderInfos;
     }
 
-    public List<OrderInfo> findOrdersByDistrictAndStatus(Integer pickUpDistrictId, Integer
-            dropOffDistrictId, String status) {
+    public List<OrderInfo> findAvailableOrdersByDistrict(Integer pickUpDistrictId, Integer
+            dropOffDistrictId) {
+        String status = "N";
         List<OrderInfo> orderInfos = findAllOrdersByPickUpAndOrDropOffDistrict(pickUpDistrictId, dropOffDistrictId);
         List<OrderInfo> orderInfosByStatus = new ArrayList<>();
         for (OrderInfo orderInfo : orderInfos) {
             if (orderInfo.getStatus().equals(status)) {
                 orderInfosByStatus.add(orderInfo);
             }
+        }
+        for (OrderInfo orderInfoByStatus : orderInfosByStatus) {
+            addLocationsToOrderInfo(orderInfoByStatus);
         }
         return orderInfosByStatus;
     }
