@@ -1,10 +1,10 @@
 INSERT INTO public.contact (id, first_name, last_name, personal_code, phone_number, email) VALUES (DEFAULT, 'Mai', 'Legaalne', '40000000001', '5612345', 'mailegaalne@mail.com');
-INSERT INTO public.contact (id, first_name, last_name, personal_code, phone_number, email) VALUES (DEFAULT, 'Siim', 'Massiiv', '40000000002', '56234567', 'siimmassiiv@mail.com');
+INSERT INTO public.contact (id, first_name, last_name, personal_code, phone_number, email) VALUES (DEFAULT, 'Siim', 'Massiiv', '300056002', '56234567', 'siimmassiiv@mail.com');
 INSERT INTO public.contact (id, first_name, last_name, personal_code, phone_number, email) VALUES (DEFAULT, 'James', 'Bond', '30000000003', '5312345', 'jamesbond@mail.com');
 INSERT INTO public.contact (id, first_name, last_name, personal_code, phone_number, email) VALUES (DEFAULT, 'Jaak', 'Rauamaak', '39034590445', '5323448', 'jaak@mail.com');
 INSERT INTO public.contact (id, first_name, last_name, personal_code, phone_number, email) VALUES (DEFAULT, 'Juhan', 'Parts', '354690646', '53288322', 'juhan@mail.com');
-INSERT INTO public.contact (id, first_name, last_name, personal_code, phone_number, email) VALUES (DEFAULT, 'Mihkel', 'Raud', '30000000004', '5323429', 'mihkel@mail.com');
-INSERT INTO public.contact (id, first_name, last_name, personal_code, phone_number, email) VALUES (DEFAULT, 'Jaan', 'Lill', '30000000004', '56792323', 'Jaan@mail.com');
+INSERT INTO public.contact (id, first_name, last_name, personal_code, phone_number, email) VALUES (DEFAULT, 'Mihkel', 'Raud', '365464566', '5323429', 'mihkel@mail.com');
+INSERT INTO public.contact (id, first_name, last_name, personal_code, phone_number, email) VALUES (DEFAULT, 'Jaan', 'Lill', '36756675', '56792323', 'Jaan@mail.com');
 
 INSERT INTO public.district (id, name) VALUES (DEFAULT, 'Mustamäe');
 INSERT INTO public.district (id, name) VALUES (DEFAULT, 'Lasnamäe');
