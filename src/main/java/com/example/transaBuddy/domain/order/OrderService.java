@@ -145,20 +145,6 @@ public class OrderService {
         return orderInfos;
     }
 
-
-//        public List<OrderInfo> findAllOrdersByDistrictAndPickUpDropOffType (Integer districtId, String pickUpDropOffType){
-//            List<PickUpDropOff> pickUpsDropOffs = pickUpDropOffRepository.findByDistrictIdAndType(districtId, pickUpDropOffType);
-//            List<Order> orders = new ArrayList<>();
-//            for (PickUpDropOff pickUpDropOff : pickUpsDropOffs) {
-//                orders.add(pickUpDropOff.getOrder());
-//            }
-//            List<OrderInfo> orderInfos = orderMapper.ordersToOrderInfos(orders);
-//            for (OrderInfo orderInfo : orderInfos) {
-//                addLocationsToOrderInfo(orderInfo);
-//            }
-//            return orderInfos;
-//        }
-
     public List<OrderInfo> findAllOrdersByPickUpAndOrDropOffDistrict(Integer pickUpDistrictId, Integer
             dropOffDistrictId) {
         List<Order> orders = new ArrayList<>();
