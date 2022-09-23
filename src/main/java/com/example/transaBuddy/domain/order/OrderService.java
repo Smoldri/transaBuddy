@@ -158,18 +158,18 @@ public class OrderService {
                     }
                 }
             }
-        } else if (pickUpDistrictId > 0 && dropOffDistrictId < 1) {
+        } else if (pickUpDistrictId > 0) {
             List<PickUpDropOff> pickUps = pickUpDropOffRepository.findByDistrictIdAndType(pickUpDistrictId, "P");
             for (PickUpDropOff pickUp : pickUps) {
                 orders.add(pickUp.getOrder());
             }
             return orderMapper.ordersToOrderInfos(orders);
-        } else if (pickUpDistrictId < 1 && dropOffDistrictId > 0) {
+        } else if (dropOffDistrictId > 0) {
             List<PickUpDropOff> dropOffs = pickUpDropOffRepository.findByDistrictIdAndType(dropOffDistrictId, "D");
             for (PickUpDropOff dropOff : dropOffs) {
                 orders.add(dropOff.getOrder());
             }
-        } else if (pickUpDistrictId < 1 && dropOffDistrictId < 1) {
+        } else {
             orders = orderRepository.findAll();
         }
         List<OrderInfo> orderInfos = orderMapper.ordersToOrderInfos(orders);
@@ -229,7 +229,7 @@ public class OrderService {
         orderRepository.save(order);
     }
 
-    public OrderInfo addLocationsToOrderInfo(OrderInfo orderInfo) {
+    public void addLocationsToOrderInfo(OrderInfo orderInfo) {
         PickUpDropOff pickUp = pickUpDropOffRepository.findByOrderIdAndType(orderInfo.getOrderId(), "P");
         PickUpDropOff dropOff = pickUpDropOffRepository.findByOrderIdAndType(orderInfo.getOrderId(), "D");
         Location pickUpLocation = pickUp.getLocation();
@@ -238,7 +238,6 @@ public class OrderService {
         orderInfo.setPickUpAddress(pickUpLocation.getAddress());
         orderInfo.setDropOffDistrictId(dropOffLocation.getDistrict().getId());
         orderInfo.setDropOffAddress(dropOffLocation.getAddress());
-        return orderInfo;
     }
 
     public OrderInfo findOrderByOrderId(Integer orderId) {
